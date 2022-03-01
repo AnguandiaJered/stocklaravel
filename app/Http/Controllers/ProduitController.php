@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Produit;
 
 class ProduitController extends Controller
 {
@@ -13,7 +14,8 @@ class ProduitController extends Controller
      */
     public function index()
     {
-        //
+        $produit = \DB::select("SELECT * FROM produit order by id DESC");
+        return view('produit', compact('produit'));
     }
 
     /**
@@ -34,7 +36,19 @@ class ProduitController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([            
+            'designation'=>'required',
+            'quantite'=>'required',
+            'category_id'=>'required',       
+        ]);
+
+        \DB::table('produit')->insert([
+            'designation'=>$request->designation,
+            'quantite'=>$request->quantite,
+            'category_id'=>$request->category_id,
+        ]);
+
+        return \redirect()->route('produit')->with('message','Inserer avec success');
     }
 
     /**
@@ -56,7 +70,9 @@ class ProduitController extends Controller
      */
     public function edit($id)
     {
-        //
+        $data = \DB::select("SELECT * FROM produit WHERE id= ?", [$id]);
+        $produit = $data[0];
+        return view('edit_produit', compact('produit'));
     }
 
     /**
@@ -68,7 +84,8 @@ class ProduitController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        \DB::update("UPDATE produit set designation = ?, quantite = ?, category_id = ? WHERE id= ? ", [$request->designation,$request->quantite,$request->category_id,$request->id]);
+        return \redirect()->route('produit')->with('message','modification reussi avec succes');
     }
 
     /**
@@ -79,6 +96,7 @@ class ProduitController extends Controller
      */
     public function destroy($id)
     {
-        //
+        \DB::delete("DELETE FROM produit WHERE id= ?", [$id]);
+        return \redirect()->route('produit')->with('message','suppression reussi avec succes');
     }
 }

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Commandeclient;
 
 class CommandeclientController extends Controller
 {
@@ -13,7 +14,8 @@ class CommandeclientController extends Controller
      */
     public function index()
     {
-        //
+        $commandeclient = \DB::select("SELECT * FROM commandeclient order by id DESC");
+        return view('commandeclient', compact('commandeclient'));
     }
 
     /**
@@ -34,7 +36,25 @@ class CommandeclientController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([            
+            'client_id'=>'required',
+            'produit_id'=>'required',
+            'quantite'=>'required',
+            'prix'=>'required',
+            'devise'=>'required',         
+            'datecmdclient'=>'required',         
+        ]);
+
+        \DB::table('commandeclient')->insert([
+            'client_id'=>$request->client_id,
+            'produit_id'=>$request->produit_id,
+            'quantite'=>$request->quantite,
+            'prix'=>$request->prix,
+            'devise'=>$request->devise,
+            'datecmdclient'=>$request->datecmdclient,
+        ]);
+
+        return \redirect()->route('commandeclient')->with('message','Inserer avec success');
     }
 
     /**
@@ -56,7 +76,9 @@ class CommandeclientController extends Controller
      */
     public function edit($id)
     {
-        //
+        $data = \DB::select("SELECT * FROM commandeclient WHERE id= ?", [$id]);
+        $commandeclient = $data[0];
+        return view('edit_commandeclient', compact('commandeclient'));
     }
 
     /**
@@ -68,7 +90,8 @@ class CommandeclientController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        \DB::update("UPDATE commandeclient set client_id = ?, produit_id = ?, quantite = ?, prix = ?, devise = ?, datecmdclient = ? WHERE id= ? ", [$request->client_id,$request->produit_id,$request->quantite,$request->prix,$request->devise,$request->datecmdclient,$request->id]);
+        return \redirect()->route('commandeclient')->with('message','modification reussi avec succes');
     }
 
     /**
@@ -79,6 +102,7 @@ class CommandeclientController extends Controller
      */
     public function destroy($id)
     {
-        //
+        \DB::delete("DELETE FROM commandeclient WHERE id= ?", [$id]);
+        return \redirect()->route('commandeclient')->with('message','suppression reussi avec succes');
     }
 }

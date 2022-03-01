@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Client;
 
 class ClientController extends Controller
 {
@@ -13,7 +14,8 @@ class ClientController extends Controller
      */
     public function index()
     {
-        //
+        $client = \DB::select("SELECT * FROM client order by id DESC");
+        return view('client', compact('client'));
     }
 
     /**
@@ -34,7 +36,23 @@ class ClientController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([            
+            'noms'=>'required',
+            'sexe'=>'required',
+            'adresse'=>'required',
+            'telephone'=>'required',
+            'mail'=>'required',         
+        ]);
+
+        \DB::table('client')->insert([
+            'noms'=>$request->noms,
+            'sexe'=>$request->sexe,
+            'adresse'=>$request->adresse,
+            'telephone'=>$request->telephone,
+            'mail'=>$request->mail,
+        ]);
+
+        return \redirect()->route('client')->with('message','Inserer avec success');
     }
 
     /**
@@ -56,7 +74,9 @@ class ClientController extends Controller
      */
     public function edit($id)
     {
-        //
+        $data = \DB::select("SELECT * FROM client WHERE id= ?", [$id]);
+        $client = $data[0];
+        return view('edit_client', compact('client'));
     }
 
     /**
@@ -68,7 +88,8 @@ class ClientController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        \DB::update("UPDATE client set noms = ?, sexe = ?, adresse = ?, telephone = ?, mail = ? WHERE id= ? ", [$request->noms,$request->sexe,$request->adresse,$request->telephone,$request->mail,$request->id]);
+        return \redirect()->route('client')->with('message','modification reussi avec succes');
     }
 
     /**
@@ -79,6 +100,7 @@ class ClientController extends Controller
      */
     public function destroy($id)
     {
-        //
+        \DB::delete("DELETE FROM client WHERE id= ?", [$id]);
+        return \redirect()->route('client')->with('message','suppression reussi avec succes');
     }
 }

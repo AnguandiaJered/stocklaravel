@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Category;
 
 class CategorieController extends Controller
 {
@@ -13,7 +14,8 @@ class CategorieController extends Controller
      */
     public function index()
     {
-        //
+        $categorie = \DB::select("SELECT * FROM category order by id DESC");
+        return view('category', compact('categorie'));
     }
 
     /**
@@ -34,7 +36,15 @@ class CategorieController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'designation'=>'required'         
+        ]);
+
+        \DB::table('category')->insert([
+            'designation'=>$request->designation
+        ]);
+
+        return \redirect()->route('category')->with('message','Inserer avec success');
     }
 
     /**
@@ -56,7 +66,9 @@ class CategorieController extends Controller
      */
     public function edit($id)
     {
-        //
+        $data = \DB::select("SELECT * FROM category WHERE id= ?", [$id]);
+        $categorie = $data[0];
+        return view('edit_category', compact('categorie'));
     }
 
     /**
@@ -68,7 +80,8 @@ class CategorieController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        \DB::update("UPDATE category set designation = ? WHERE id= ? ", [$request->designation,$request->id]);
+        return \redirect()->route('category')->with('message','modification reussi avec succes');
     }
 
     /**
@@ -79,6 +92,7 @@ class CategorieController extends Controller
      */
     public function destroy($id)
     {
-        //
+        \DB::delete("DELETE FROM category WHERE id= ?", [$id]);
+        return \redirect()->route('category')->with('message','suppression reussi avec succes');
     }
 }

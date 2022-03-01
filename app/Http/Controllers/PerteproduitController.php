@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Perteproduit;
 
 class PerteproduitController extends Controller
 {
@@ -13,7 +14,8 @@ class PerteproduitController extends Controller
      */
     public function index()
     {
-        //
+        $perteproduit = \DB::select("SELECT * FROM perteproduit order by id DESC");
+        return view('perteproduit', compact('perteproduit'));
     }
 
     /**
@@ -34,7 +36,21 @@ class PerteproduitController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([            
+            'produit_id'=>'required',
+            'quantite'=>'required',
+            'dateperte'=>'required',
+            'typegaspillage'=>'required',        
+        ]);
+
+        \DB::table('perteproduit')->insert([
+            'produit_id'=>$request->produit_id,
+            'quantite'=>$request->quantite,
+            'dateperte'=>$request->dateperte,
+            'typegaspillage'=>$request->typegaspillage,
+        ]);
+
+        return \redirect()->route('perteproduit')->with('message','Inserer avec success');
     }
 
     /**
@@ -56,7 +72,9 @@ class PerteproduitController extends Controller
      */
     public function edit($id)
     {
-        //
+        $data = \DB::select("SELECT * FROM perteproduit WHERE id= ?", [$id]);
+        $perteproduit = $data[0];
+        return view('edit_perteproduit', compact('perteproduit'));
     }
 
     /**
@@ -68,7 +86,8 @@ class PerteproduitController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        \DB::update("UPDATE perteproduit set produit_id = ?, quantite = ?, dateperte = ?, typegaspillage = ? WHERE id= ? ", [$request->produit_id,$request->quantite,$request->dateperte,$request->typegaspillage,$request->id]);
+        return \redirect()->route('perteproduit')->with('message','modification reussi avec succes');
     }
 
     /**
@@ -79,6 +98,7 @@ class PerteproduitController extends Controller
      */
     public function destroy($id)
     {
-        //
+        \DB::delete("DELETE FROM perteproduit WHERE id= ?", [$id]);
+        return \redirect()->route('perteproduit')->with('message','suppression reussi avec succes');
     }
 }

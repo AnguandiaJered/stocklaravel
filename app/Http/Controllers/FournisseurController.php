@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Fournisseur;
 
 class FournisseurController extends Controller
 {
@@ -13,7 +14,8 @@ class FournisseurController extends Controller
      */
     public function index()
     {
-        //
+        $fournisseur = \DB::select("SELECT * FROM fournisseur order by id DESC");
+        return view('fournisseur', compact('fournisseur'));
     }
 
     /**
@@ -34,7 +36,23 @@ class FournisseurController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([            
+            'noms'=>'required',
+            'sexe'=>'required',
+            'adresse'=>'required',
+            'telephone'=>'required',
+            'mail'=>'required',         
+        ]);
+
+        \DB::table('fournisseur')->insert([
+            'noms'=>$request->noms,
+            'sexe'=>$request->sexe,
+            'adresse'=>$request->adresse,
+            'telephone'=>$request->telephone,
+            'mail'=>$request->mail,
+        ]);
+
+        return \redirect()->route('fournisseur')->with('message','Inserer avec success');
     }
 
     /**
@@ -56,7 +74,9 @@ class FournisseurController extends Controller
      */
     public function edit($id)
     {
-        //
+        $data = \DB::select("SELECT * FROM fournisseur WHERE id= ?", [$id]);
+        $fournisseur = $data[0];
+        return view('edit_fournisseur', compact('fournisseur'));
     }
 
     /**
@@ -68,7 +88,8 @@ class FournisseurController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        \DB::update("UPDATE fournisseur set noms = ?, sexe = ?, adresse = ?, telephone = ?, mail = ? WHERE id= ? ", [$request->noms,$request->sexe,$request->adresse,$request->telephone,$request->mail,$request->id]);
+        return \redirect()->route('fournisseur')->with('message','modification reussi avec succes');
     }
 
     /**
@@ -79,6 +100,7 @@ class FournisseurController extends Controller
      */
     public function destroy($id)
     {
-        //
+        \DB::delete("DELETE FROM fournisseur WHERE id= ?", [$id]);
+        return \redirect()->route('fournisseur')->with('message','suppression reussi avec succes');
     }
 }
