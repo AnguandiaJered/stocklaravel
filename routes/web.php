@@ -45,6 +45,7 @@ Route::get('/approvision/index', 'ApprovisionController@index')->name('approvisi
 Route::get('/approvision/edit/{id}', 'ApprovisionController@edit')->name('approvision.edit');
 Route::post('/approvision/update', 'ApprovisionController@update')->name('approvision.update');
 Route::get('/approvision/delete/{id}', 'ApprovisionController@destroy')->name('approvision.delete');
+Route::get('/approvision', function () { return view('approvision'); });
 
 Route::post('/client/store', 'ClientController@store')->name('client.store');
 Route::get('/client/index', 'ClientController@index')->name('client.index');
@@ -69,6 +70,7 @@ Route::get('/fournisseur/index', 'FournisseurController@index')->name('fournisse
 Route::get('/fournisseur/edit/{id}', 'FournisseurController@edit')->name('fournisseur.edit');
 Route::post('/fournisseur/update', 'FournisseurController@update')->name('fournisseur.update');
 Route::get('/fournisseur/delete/{id}', 'FournisseurController@destroy')->name('fournisseur.delete');
+Route::get('/fournisseur', function () { return view('fournisseur');});
 
 Route::post('/perteproduit/store', 'PerteproduitController@store')->name('perteproduit.store');
 Route::get('/perteproduit/index', 'PerteproduitController@index')->name('perteproduit.index');
@@ -81,6 +83,7 @@ Route::get('/produit/index', 'ProduitController@index')->name('produit.index');
 Route::get('/produit/edit/{id}', 'ProduitController@edit')->name('produit.edit');
 Route::post('/produit/update', 'ProduitController@update')->name('produit.update');
 Route::get('/produit/delete/{id}', 'ProduitController@destroy')->name('produit.delete');
+Route::get('/produit', function () { return view('produit'); });
 
 Route::post('/sortie/store', 'SortieController@store')->name('sortie.store');
 Route::get('/sortie/index', 'SortieController@index')->name('sortie.index');
