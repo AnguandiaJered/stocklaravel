@@ -78,7 +78,7 @@ class ApprovisionController extends Controller
     {
         $data = \DB::select("SELECT * FROM approvision WHERE id= ?", [$id]);
         $approvision = $data[0];
-        return view('edit_approvision', compact('approvision'));
+        return view('approvision', compact('approvision'));
     }
 
     /**

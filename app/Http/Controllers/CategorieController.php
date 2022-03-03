@@ -66,9 +66,9 @@ class CategorieController extends Controller
      */
     public function edit($id)
     {
-        $data = \DB::select("SELECT * FROM category WHERE id= ?", [$id]);
-        $categorie = $data[0];
-        return view('edit_category', compact('categorie'));
+        // $data = \DB::select("SELECT * FROM category WHERE id= ?", [$id]);
+        // $categorie = $data[0];
+        // return view('category', compact('categorie'));
     }
 
     /**
@@ -80,8 +80,8 @@ class CategorieController extends Controller
      */
     public function update(Request $request, $id)
     {
-        \DB::update("UPDATE category set designation = ? WHERE id= ? ", [$request->designation,$request->id]);
-        return \redirect()->route('category')->with('message','modification reussi avec succes');
+        // \DB::update("UPDATE category set designation = ? WHERE id= ? ", [$request->designation,$request->id]);
+        // return \redirect()->route('category')->with('message','modification reussi avec succes');
     }
 
     /**
@@ -92,7 +92,7 @@ class CategorieController extends Controller
      */
     public function destroy($id)
     {
-        \DB::delete("DELETE FROM category WHERE id= ?", [$id]);
-        return \redirect()->route('category')->with('message','suppression reussi avec succes');
+        // \DB::delete("DELETE FROM category WHERE id= ?", [$id]);
+        // return \redirect()->route('category')->with('message','suppression reussi avec succes');
     }
 }

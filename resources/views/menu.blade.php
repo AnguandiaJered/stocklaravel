@@ -37,7 +37,7 @@ height: 65px;
 						</ul>
 					</li>
 					<li>
-						<a href="" class="dropdown-toggle no-arrow">
+						<a href="/client" class="dropdown-toggle no-arrow">
 							<span class="micon dw dw-user"></span><span class="mtext">Clients</span>
 						</a>
 					</li>
@@ -46,8 +46,8 @@ height: 65px;
 							<span class="micon dw dw-shopping-basket"></span><span class="mtext">Sortie Stock</span>
 						</a>
 						<ul class="submenu">
-							<li><a href="">Sortie</a></li>							
-							<li><a href="">Perte Produit</a></li>																			
+							<li><a href="/sortie">Sortie</a></li>							
+							<li><a href="/perteproduit">Perte Produit</a></li>																			
 						</ul>
 					</li>
 					<li class="dropdown">
@@ -55,8 +55,8 @@ height: 65px;
 							<span class="micon dw dw-list3"></span><span class="mtext">Commandes</span>
 						</a>
 						<ul class="submenu">
-							<li><a href="">Commandes Clients</a></li>
-							<li><a href="">Nos Commandes</a></li>																					
+							<li><a href="/commandeclient">Commandes Clients</a></li>
+							<li><a href="/commandecompany">Nos Commandes</a></li>																					
 						</ul>
 					</li>                 
 					<li class="dropdown">
@@ -64,8 +64,8 @@ height: 65px;
 							<span class="micon dw dw-settings"></span><span class="mtext">Parametre</span>
 						</a>
 						<ul class="submenu">							
-							<li><a href="">Utilisateurs</a></li>
-							<li><a href="">Stock Alerte</a></li>																			
+							<li><a href="/user">Utilisateurs</a></li>
+							<li><a href="/alerte">Stock Alerte</a></li>																			
 						</ul>
 					</li>													
 				</ul>

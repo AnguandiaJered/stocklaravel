@@ -78,7 +78,7 @@ class CommandecompanyController extends Controller
     {
         $data = \DB::select("SELECT * FROM commandecompany WHERE id= ?", [$id]);
         $commandeclient = $data[0];
-        return view('edit_commandecompany', compact('commandecompany'));
+        return view('commandecompany', compact('commandecompany'));
     }
 
     /**

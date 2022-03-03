@@ -39,6 +39,7 @@ Route::get('/alerte/index', 'AlerteController@index')->name('alerte.index');
 Route::get('/alerte/edit/{id}', 'AlerteController@edit')->name('alerte.edit');
 Route::post('/alerte/update', 'AlerteController@update')->name('alerte.update');
 Route::get('/alerte/delete/{id}', 'AlerteController@destroy')->name('alerte.delete');
+Route::get('/alerte', function () { return view('alerte'); });
 
 Route::post('/approvision/store', 'ApprovisionController@store')->name('approvision.store');
 Route::get('/approvision/index', 'ApprovisionController@index')->name('approvision.index');
@@ -52,18 +53,21 @@ Route::get('/client/index', 'ClientController@index')->name('client.index');
 Route::get('/client/edit/{id}', 'ClientController@edit')->name('client.edit');
 Route::post('/client/update', 'ClientController@update')->name('client.update');
 Route::get('/client/delete/{id}', 'ClientController@destroy')->name('client.delete');
+Route::get('/client', function () { return view('client');});
 
 Route::post('/commandeclient/store', 'CommandeclientController@store')->name('commandeclient.store');
 Route::get('/commandeclient/index', 'CommandeclientController@index')->name('commandeclient.index');
 Route::get('/commandeclient/edit/{id}', 'CommandeclientController@edit')->name('commandeclient.edit');
 Route::post('/commandeclient/update', 'CommandeclientController@update')->name('commandeclient.update');
 Route::get('/commandeclient/delete/{id}', 'CommandeclientController@destroy')->name('commandeclient.delete');
+Route::get('/commandeclient', function () { return view('commandeclient');});
 
 Route::post('/commandecompany/store', 'CommandecompanyController@store')->name('commandecompany.store');
 Route::get('/commandecompany/index', 'CommandecompanyController@index')->name('commandecompany.index');
 Route::get('/commandecompany/edit/{id}', 'CommandecompanyController@edit')->name('commandecompany.edit');
 Route::post('/commandecompany/update', 'CommandecompanyController@update')->name('commandecompany.update');
 Route::get('/commandecompany/delete/{id}', 'CommandecompanyController@destroy')->name('commandecompany.delete');
+Route::get('/commandecompany', function () { return view('commandecompany'); });
 
 Route::post('/fournisseur/store', 'FournisseurController@store')->name('fournisseur.store');
 Route::get('/fournisseur/index', 'FournisseurController@index')->name('fournisseur.index');
@@ -77,6 +81,7 @@ Route::get('/perteproduit/index', 'PerteproduitController@index')->name('pertepr
 Route::get('/perteproduit/edit/{id}', 'PerteproduitController@edit')->name('perteproduit.edit');
 Route::post('/perteproduit/update', 'PerteproduitController@update')->name('perteproduit.update');
 Route::get('/perteproduit/delete/{id}', 'PerteproduitController@destroy')->name('perteproduit.delete');
+Route::get('/perteproduit', function () { return view('perteproduit'); });
 
 Route::post('/produit/store', 'ProduitController@store')->name('produit.store');
 Route::get('/produit/index', 'ProduitController@index')->name('produit.index');
@@ -90,3 +95,4 @@ Route::get('/sortie/index', 'SortieController@index')->name('sortie.index');
 Route::get('/sortie/edit/{id}', 'SortieController@edit')->name('sortie.edit');
 Route::post('/sortie/update', 'SortieController@update')->name('sortie.update');
 Route::get('/sortie/delete/{id}', 'SortieController@destroy')->name('sortie.delete');
+Route::get('/sortie', function () { return view('sortie');});

@@ -76,7 +76,7 @@ class ClientController extends Controller
     {
         $data = \DB::select("SELECT * FROM client WHERE id= ?", [$id]);
         $client = $data[0];
-        return view('edit_client', compact('client'));
+        return view('client', compact('client'));
     }
 
     /**

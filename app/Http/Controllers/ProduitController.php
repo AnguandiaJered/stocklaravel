@@ -72,7 +72,7 @@ class ProduitController extends Controller
     {
         $data = \DB::select("SELECT * FROM produit WHERE id= ?", [$id]);
         $produit = $data[0];
-        return view('edit_produit', compact('produit'));
+        return view('produit', compact('produit'));
     }
 
     /**

@@ -38,7 +38,7 @@ class SortieController extends Controller
     {
         $request->validate([            
             'client_id'=>'required',
-            'produit_id'=>'produit_id',
+            'produit_id'=>'required',
             'quantite'=>'required',       
             'prix	'=>'required',       
             'devise'=>'required',       
@@ -78,7 +78,7 @@ class SortieController extends Controller
     {
         $data = \DB::select("SELECT * FROM sortie WHERE id= ?", [$id]);
         $sortie = $data[0];
-        return view('edit_sortie', compact('sortie'));
+        return view('sortie', compact('sortie'));
     }
 
     /**

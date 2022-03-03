@@ -4,7 +4,7 @@
 <head>
 	<!-- Basic Page Info -->
 	<meta charset="utf-8">
-	<title>Approvisionnement</title>
+	<title>Clients</title>
 
 	  <!-- Site favicon -->
        <link rel="apple-touch-icon" sizes="180x180" href="{{url('assets\vendors\images\Logo.jpg')}}">
@@ -138,157 +138,137 @@
 							<nav aria-label="breadcrumb" role="navigation">
 								<ol class="breadcrumb">
 									<li class="breadcrumb-item"><a href="index.php">Home</a></li>
-									<li class="breadcrumb-item active" aria-current="page">Approvisionnement</li>
+									<li class="breadcrumb-item active" aria-current="page">Clients</li>
 								</ol>
 							</nav>
 						</div>
 						<div class="col-md-12 col-sm-12 text-right">							
-							<button data-toggle="modal" data-target="#myModal" class="btn btn-primary">Add Approvision</button>
+								<button data-toggle="modal" data-target="#myModal" class="btn btn-primary">Add client</button>
+							
 							<div id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" class="modal fade text-left">
-                                <div role="document" class="modal-dialog">
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                            <h5 id="exampleModalLabel" class="modal-title">Add approvision</h5>
-                                            <button type="button" data-dismiss="modal" aria-label="Close" class="close"><span aria-hidden="true">×</span></button>
-                                        </div>
-                                        <div class="modal-body col-md-12">						
-                                            <form id="forme" method="POST" Action="" class="form-horizontal col-md-12" autocomplete="off">
-                                                <div class="row">
-                                                    <div class="col-md-6  mt-3 text-left">                           
-                                                    
-                                                        <div class="form-group">
-                                                            <label for="produit">Produit</label>
-                                                            <select  
-                                                                class="form-control" name="produit" >
-                                                                <optgroup >																					
-                                                                    <option value=""></option>											
-                                                                </optgroup>
-                                                            </select>
-                                                        </div> 
-                                                        <div class="form-group">
-                                                            <label for="fournisseur">Fournisseur</label>
-                                                            <select class="form-control" name="fournisseur" >
-                                                                <optgroup >																							
-                                                                    <option value=""></option>													
-                                                                </optgroup>	
-                                                            </select>
-                                                        </div>                        
-                                                        <div class="form-group">
-                                                            <label for="quantite">Quantité</label>
-                                                            <input type="number" class="form-control" placeholder="quantité" min="0" name="quantite" oninput="this.value = Math.abs(this.value)" required/>
-                                                        </div>                                                    
-                                                    </div>
-                                                    <div class="col-md-6  mt-3 text-left">  
-                                                        <div class="form-group">
-                                                            <label for="prix">Prix unitaire</label>
-                                                            <input type="number" class="form-control" placeholder="Prix unitaire" min="0" name="prix" oninput="this.value = Math.abs(this.value)" required/>
-                                                        </div>                       
-                                                        <div class="form-group">
-                                                            <label for="devise">Devise</label>
-                                                            <select class="form-control" name="devise" >
-                                                                <option>USD</option>
-                                                                <!-- <option>FC</option> -->
-                                                            </select>
-                                                        </div>
-                                                        <div class="form-group">
-                                                            <label for="date">Date</label>
-                                                            <input type="date" class="form-control" placeholder="date" name="dateoperation" required/>
-                                                        </div>                        
-                                                    </div>
+							<div role="document" class="modal-dialog">
+							<div class="modal-content">
+								<div class="modal-header">
+									<h5 id="exampleModalLabel" class="modal-title">Add client</h5>
+									<button type="button" data-dismiss="modal" aria-label="Close" class="close"><span aria-hidden="true">×</span></button>
+								</div>
+								<div class="modal-body col-md-12">						
+									<form id="forme" method="POST" Action="savefournisseur.php" class="form-horizontal col-md-12" autocomplete="off">										
+                                        <div class="row">
+                                            <div class="col-md-6 mt-3">
+                                                <div class="form-group">
+                                                    <label for="nom">Nom</label>
+                                                    <input type="text" class="form-control" placeholder="Entré le nom" name='nom' required />
                                                 </div>
-                                                <div class="form-group">                               
-                                                    <input type="submit" class="btn btn-primary col-md-3 mt-3 mr-5" value="Enregistrer" required/>
-                                                </div> 
-                                            </form>
-                                        </div>                                   
-                                    </div>								                        
-                                </div>							
-                            </div>							
+                                                <div class="form-group">
+                                                    <label for="prenom">Prénom</label>
+                                                    <input type="text" class="form-control" placeholder="Entré le prénom" name='prenom' required />
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="sexe">Sexe</label>
+                                                    <select  class="form-control" name='sexe' required >
+                                                            <option>M</option>
+                                                            <option>F</option>
+                                                    </select>
+                                                </div>                                                 
+                                            </div>
+                                            <div class="col-md-6 mt-3">
+                                                    <div class="form-group">
+                                                        <label for="adresse">Adresse</label>
+                                                        <input type="text" class="form-control" placeholder="Entré l'adresse" name='adresse' required />
+                                                    </div> 
+                                                    <div class="form-group">
+                                                        <label for="telephone">Telephone</label>
+                                                        <input type="tel" class="form-control" min="0" placeholder="+243 ... ... ..." name='telephone' required />
+                                                    </div>                             
+                                                    <div class="form-group">
+                                                        <label for="adresse">Email</label>
+                                                        <input type="email" class="form-control" placeholder="exemple@gmail.com" name='mail' required />
+                                                    </div>
+                                                </div>      
+                                            </div>                        
+                                            <div class="form-group">                               
+                                                <input type="submit" class="btn btn-primary col-md-6 mt-4 ml-5" value="Enregistrer" />
+                                            </div> 																								
+									</form>
+									</div>
+								</div>								                        
+							</div>							
+						</div>							
 						</div>
 					</div>
 				</div>
-          				
-                <div class="card-box mb-50 container"><br>               
-				<a class="btn btn-primary offset-10" href="fpdf/tutorial/produit.php">Imprimer</a>    	
+				
+				<div class="card-box mb-30">
 					<div class="pd-20">
-						<h4 class="text-blue h4">Liste des approvisionnement</h4>                  						
+						<h4 class="text-blue h4">Liste des Clients</h4>						
 					</div>
 					<div class="pb-20">
 						<table class="data-table table stripe hover nowrap">
 							<thead>
 								<tr>
 									<th class="table-plus datatable-nosort">#</th>
-									<th>Produits</th>
-                                    <th>Fournisseur</th>
-									<th>Quantité</th>
-									<th>Prix unitaire</th>									
-									<th>Devise</th>									
-									<th>Date</th>										
+									<th>Nom</th>
+									<th>Prénom</th>
+									<th>Sexe</th>
+									<th>Adresse</th>									
+									<th>Telephone</th>									
+									<th>Email</th>									
 									<th class="datatable-nosort">Action</th>
 								</tr>
 							</thead>
-							<tbody>							
-							<div id="edit" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" class="modal fade text-left">
+							<tbody>
+							
+								<div id="edit" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" class="modal fade text-left">
 							<div role="document" class="modal-dialog">
 							<div class="modal-content">
 								<div class="modal-header">
-									<h5 id="exampleModalLabel" class="modal-title">Update Approvisionnement</h5>
+									<h5 id="exampleModalLabel" class="modal-title">Update Client</h5>
 									<button type="button" data-dismiss="modal" aria-label="Close" class="close"><span aria-hidden="true">×</span></button>
 								</div>
 								<div class="modal-body col-md-12">						
-                                <form id="forme" method="POST" Action="" class="form-horizontal col-md-12" autocomplete="off">
-                                                <div class="row">
-                                                    <div class="col-md-6  mt-3 text-left">                           
-                                                    
-                                                        <div class="form-group">
-                                                            <label for="produit">Produit</label>
-                                                            <select  
-                                                                class="form-control" name="produit" >
-                                                                <optgroup >																					
-                                                                    <option value=""></option>											
-                                                                </optgroup>
-                                                            </select>
-                                                        </div> 
-                                                        <div class="form-group">
-                                                            <label for="fournisseur">Fournisseur</label>
-                                                            <select class="form-control" name="fournisseur" >
-                                                                <optgroup >																							
-                                                                    <option value=""></option>													
-                                                                </optgroup>	
-                                                            </select>
-                                                        </div>                        
-                                                        <div class="form-group">
-                                                            <label for="quantite">Quantité</label>
-                                                            <input type="number" class="form-control" placeholder="quantité" min="0" name="quantite" oninput="this.value = Math.abs(this.value)" required/>
-                                                        </div>                                                    
-                                                    </div>
-                                                    <div class="col-md-6  mt-3 text-left">  
-                                                        <div class="form-group">
-                                                            <label for="prix">Prix unitaire</label>
-                                                            <input type="number" class="form-control" placeholder="Prix unitaire" min="0" name="prix" oninput="this.value = Math.abs(this.value)" required/>
-                                                        </div>                       
-                                                        <div class="form-group">
-                                                            <label for="devise">Devise</label>
-                                                            <select class="form-control" name="devise" >
-                                                                <option>USD</option>
-                                                                <!-- <option>FC</option> -->
-                                                            </select>
-                                                        </div>
-                                                        <div class="form-group">
-                                                            <label for="date">Date</label>
-                                                            <input type="date" class="form-control" placeholder="date" name="dateoperation" required/>
-                                                        </div>                        
-                                                    </div>
+									<form id="forme_edit" method="POST" Action="editfournisseur.php" class="form-horizontal" autocomplete="off">
+									<input type="hidden" name="id" id="id" value="" class="form-control" required/>										
+									    <div class="row">
+                                            <div class="col-md-6 mt-3">
+                                                <div class="form-group">
+                                                    <label for="nom">Nom</label>
+                                                    <input type="text" class="form-control" placeholder="Entré le nom" name='nom' value="" required />
                                                 </div>
-                                                <div class="form-group">                               
-                                                    <input type="submit" class="btn btn-primary col-md-3 mt-3 mr-5" value="Modifier" required/>
-                                                </div> 
-                                            </form>
+                                                <div class="form-group">
+                                                    <label for="prenom">Prénom</label>
+                                                    <input type="text" class="form-control" placeholder="Entré le prénom" name='prenom' value="" required />
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="sexe">Sexe</label>
+                                                    <select  class="form-control" name='sexe' value="" required >
+                                                            <option value=""></option>                                                                                                                      
+                                                    </select>
+                                                </div>                                                 
+                                            </div>
+                                                <div class="col-md-6 mt-3">
+                                                    <div class="form-group">
+                                                        <label for="adresse">Adresse</label>
+                                                        <input type="text" class="form-control" placeholder="Entré l'adresse" name='adresse' value="" required />
+                                                    </div> 
+                                                    <div class="form-group">
+                                                        <label for="telephone">Telephone</label>
+                                                        <input type="tel" class="form-control" min="0" placeholder="+243 ... ... ..." oninput="this.value = Math.abs(this.value)" name='telephone' value="" required />
+                                                    </div>                             
+                                                    <div class="form-group">
+                                                        <label for="adresse">Email</label>
+                                                        <input type="email" class="form-control" placeholder="exemple@gmail.com" name='mail' value="" required />
+                                                    </div>
+                                                </div>      
+                                            </div>                        
+                                            <div class="form-group">                               
+                                                <input type="submit" class="btn btn-primary col-md-6 mt-4 ml-5" value="Modifier" />
+                                            </div> 																											
+									    </form>
 									</div>
 								</div>								                        
 							</div>							
 						</div>								
-													
 								<tr>
 									<div class="modal fade" id="edit">
                                         <div class="modal-dialog modal-success">
@@ -303,16 +283,17 @@
 									<td class="table-plus"></td>
 									<td></td>
 									<td></td>
-									<td></td>																		
-									<td></td>																		
-									<td></td>																		
-									<td></td>																		
+									<td></td>
+									<td></td>									
+									<td></td>									
+									<td></td>									
 									<td>
 										<div class="dropdown">
 											<a class="btn btn-link font-24 p-0 line-height-1 no-arrow dropdown-toggle" href="#" role="button" data-toggle="dropdown">
 												<i class="dw dw-more"></i>
 											</a>
 											<div class="dropdown-menu dropdown-menu-right dropdown-menu-icon-list">
+												<!-- <a class="dropdown-item" href="#"><i class="dw dw-eye"></i> View</a> -->
 												<a class="dropdown-item" data-toggle="modal" data-target="#edit" href="#"><i class="dw dw-edit2"></i> Edit</a>
 												<a class="dropdown-item" onclick= "return (confirm(' Voulez-vous supprimer vraiment cette information ?'));"  href="deletefournisseur.php?id="><i class="dw dw-delete-3"></i> Delete</a>											
 											</div>
@@ -325,7 +306,7 @@
 					</div>
 				</div>
 				<!-- Simple Datatable End -->
-			</div><br/>	
+			</div>	
             @include('footer')
 		</div>
 	</div>

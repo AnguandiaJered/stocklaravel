@@ -60,7 +60,7 @@ class AlerteController extends Controller
     {
         $data = \DB::select("SELECT * FROM alerte WHERE id= ?", [$id]);
         $alerte = $data[0];
-        return view('edit_alerte', compact('alerte'));
+        return view('alerte', compact('alerte'));
     }
 
     /**

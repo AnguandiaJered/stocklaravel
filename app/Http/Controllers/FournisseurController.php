@@ -76,7 +76,7 @@ class FournisseurController extends Controller
     {
         $data = \DB::select("SELECT * FROM fournisseur WHERE id= ?", [$id]);
         $fournisseur = $data[0];
-        return view('edit_fournisseur', compact('fournisseur'));
+        return view('fournisseur', compact('fournisseur'));
     }
 
     /**
