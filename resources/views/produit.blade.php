@@ -152,30 +152,29 @@
 									<h5 id="exampleModalLabel" class="modal-title">Add produit</h5>
 									<button type="button" data-dismiss="modal" aria-label="Close" class="close"><span aria-hidden="true">×</span></button>
 								</div>
-								<div class="modal-body col-md-12">						
-									<form id="forme" method="POST" Action="savefournisseur.php" class="form-horizontal col-md-12" autocomplete="off">										
-                                        <div class="form-group">
-                                            <label for="designation">Designation</label>
-                                            <input type="text" class="form-control" placeholder="designation" name="designation" value="" required/>
-                                        </div>                         
-                                        <div class="form-group">
-                                            <label for="quantite">Quantité</label>
-                                            <input type="number" class="form-control" placeholder="quantité" name="quantite" min="0" oninput="this.value = Math.abs(this.value)" value="" required/>
-                                        </div>               
-                                        <div class="form-group">
-                                            <label for="categorie">Categorie</label>
-                                            <select class="form-control" name="categorie" value="">
-                                                <optgroup >																						
-                                                    <option value=""></option>                                                           														
-                                                </optgroup>	
-                                            </select>
-                                        </div>                 
-                                        <div class="form-group">                               
-                                            <input type="submit" class="btn btn-primary col-md-6 mt-4 ml-5" value="Enregistrer" />
-                                        </div> 																								
-									</form>
-									</div>
-                                   
+									<div class="modal-body col-md-12">						
+										<form id="forme" method="POST" Action="" class="form-horizontal col-md-12" autocomplete="off">										
+											<div class="form-group">
+												<label for="designation">Designation</label>
+												<input type="text" class="form-control" placeholder="designation" id="designation" name="designation" value="" required/>
+											</div>                         
+											<div class="form-group">
+												<label for="quantite">Quantité</label>
+												<input type="number" class="form-control" placeholder="quantité" id="quantite" name="quantite" min="0" oninput="this.value = Math.abs(this.value)" value="" required/>
+											</div>               
+											<div class="form-group">
+												<label for="categorie">Categorie</label>
+												<select class="form-control" name="category_id" id="category_id">
+													<optgroup >																						
+														<option value=""></option>                                                           														
+													</optgroup>	
+												</select>
+											</div>                 
+											<div class="form-group">                               
+												<input type="submit" class="btn btn-primary col-md-6 mt-4 ml-5" value="Enregistrer" />
+											</div> 																								
+										</form>
+									</div>                                   
 								</div>								                        
 							</div>							
 						</div>							
@@ -194,7 +193,7 @@
                                             <div class=" mt-3">
                                                 <div class="form-group">
                                                     <label for="designation">Designation</label>
-                                                    <input type="text" class="form-control" placeholder="designation" name='designation' required />
+                                                    <input type="text" class="form-control" placeholder="designation" name='designation' id="designation" required />
                                                 </div>                                                                                            
                                             </div>                                                               
                                             <div class="form-group">                               
@@ -231,29 +230,29 @@
 									<h5 id="exampleModalLabel" class="modal-title">Update sortie</h5>
 									<button type="button" data-dismiss="modal" aria-label="Close" class="close"><span aria-hidden="true">×</span></button>
 								</div>
-								<div class="modal-body col-md-12">						
-									<form id="forme_edit" method="POST" Action="" class="form-horizontal" autocomplete="off">
-                                        <input type="hidden" name="id" id="id" value="" class="form-control" required/>										
-                                        <div class="form-group">
-                                            <label for="designation">Designation</label>
-                                            <input type="text" class="form-control" placeholder="designation" name="designation" value="" required/>
-                                        </div>                         
-                                        <div class="form-group">
-                                            <label for="quantite">Quantité</label>
-                                            <input type="number" class="form-control" placeholder="quantité" name="quantite" min="0" oninput="this.value = Math.abs(this.value)" value="" required/>
-                                        </div>               
-                                        <div class="form-group">
-                                            <label for="categorie">Categorie</label>
-                                            <select class="form-control" name="categorie" value="">
-                                                <optgroup >																						
-                                                    <option value=""></option>                                                           														
-                                                </optgroup>	
-                                            </select>
-                                        </div>                    
-                                        <div class="form-group">                               
-                                            <input type="submit" class="btn btn-primary col-md-6 mt-4 ml-5" value="Modifier" />
-                                        </div> 																											
-									</form>
+									<div class="modal-body col-md-12">						
+										<form id="forme_edit" method="POST" Action="" class="form-horizontal" autocomplete="off">
+											<input type="hidden" name="id" id="id" value="" class="form-control" required/>										
+											<div class="form-group">
+												<label for="designation">Designation</label>
+												<input type="text" class="form-control" placeholder="designation" id="designation" name="designation" value="" required/>
+											</div>                         
+											<div class="form-group">
+												<label for="quantite">Quantité</label>
+												<input type="number" class="form-control" placeholder="quantité" id="quantite" name="quantite" min="0" oninput="this.value = Math.abs(this.value)" value="" required/>
+											</div>               
+											<div class="form-group">
+												<label for="categorie">Categorie</label>
+												<select class="form-control" name="category_id" id="category_id">
+													<optgroup >																						
+														<option value=""></option>                                                           														
+													</optgroup>	
+												</select>
+											</div>              								
+											<div class="form-group">                               
+												<input type="submit" class="btn btn-primary col-md-6 mt-4 ml-5" value="Modifier" />
+											</div> 																											
+										</form>
 									</div>
 								</div>								                        
 							</div>							
@@ -279,8 +278,7 @@
 											<a class="btn btn-link font-24 p-0 line-height-1 no-arrow dropdown-toggle" href="#" role="button" data-toggle="dropdown">
 												<i class="dw dw-more"></i>
 											</a>
-											<div class="dropdown-menu dropdown-menu-right dropdown-menu-icon-list">
-												<!-- <a class="dropdown-item" href="#"><i class="dw dw-eye"></i> View</a> -->
+											<div class="dropdown-menu dropdown-menu-right dropdown-menu-icon-list">												
 												<a class="dropdown-item" data-toggle="modal" data-target="#edit" href="#"><i class="dw dw-edit2"></i> Edit</a>
 												<a class="dropdown-item" onclick= "return (confirm(' Voulez-vous supprimer vraiment cette information ?'));"  href="deletefournisseur.php?id="><i class="dw dw-delete-3"></i> Delete</a>											
 											</div>

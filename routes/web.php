@@ -12,6 +12,7 @@ use App\Http\Controllers\FournisseurController;
 use App\Http\Controllers\PerteproduitController;
 use App\Http\Controllers\ProduitController;
 use App\Http\Controllers\SortieController;
+use App\Http\Controllers\UsersController;
 
 /*
 |--------------------------------------------------------------------------
@@ -30,15 +31,12 @@ Route::get('/', function () {
 
 Route::post('/category/store', 'CategorieController@store')->name('category.store');
 Route::get('/category/index', 'CategorieController@index')->name('category.index');
-Route::get('/category/edit/{id}', 'CategorieController@edit')->name('category.edit');
-Route::post('/category/update', 'CategorieController@update')->name('category.update');
-Route::get('/category/delete/{id}', 'CategorieController@destroy')->name('category.delete');
 
-Route::post('/alerte/store', 'AlerteController@store')->name('alerte.store');
+
+
 Route::get('/alerte/index', 'AlerteController@index')->name('alerte.index');
 Route::get('/alerte/edit/{id}', 'AlerteController@edit')->name('alerte.edit');
 Route::post('/alerte/update', 'AlerteController@update')->name('alerte.update');
-Route::get('/alerte/delete/{id}', 'AlerteController@destroy')->name('alerte.delete');
 Route::get('/alerte', function () { return view('alerte'); });
 
 Route::post('/approvision/store', 'ApprovisionController@store')->name('approvision.store');
@@ -96,3 +94,10 @@ Route::get('/sortie/edit/{id}', 'SortieController@edit')->name('sortie.edit');
 Route::post('/sortie/update', 'SortieController@update')->name('sortie.update');
 Route::get('/sortie/delete/{id}', 'SortieController@destroy')->name('sortie.delete');
 Route::get('/sortie', function () { return view('sortie');});
+
+Route::post('/users/store', 'UsersController@store')->name('users.store');
+Route::get('/users/index', 'UsersController@index')->name('users.index');
+Route::get('/users/edit/{id}', 'UsersController@edit')->name('users.edit');
+Route::post('/users/update', 'UsersController@update')->name('users.update');
+Route::get('/users/delete/{id}', 'UsersController@destroy')->name('users.delete');
+Route::get('/users', function () { return view('users');});

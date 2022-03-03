@@ -143,7 +143,7 @@
 							</nav>
 						</div>
 						<div class="col-md-12 col-sm-12 text-right">							
-								<button data-toggle="modal" data-target="#myModal" class="btn btn-primary">Add client</button>
+								<button data-toggle="modal" data-target="#myModal" class="btn btn-primary">Add users</button>
 							
 							<div id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" class="modal fade text-left">
 							<div role="document" class="modal-dialog">
@@ -155,8 +155,8 @@
 								<div class="modal-body col-md-12">						
 									<form id="forme" method="POST" Action="" class="form-horizontal col-md-12" autocomplete="off">										
                                         <div class="form-group">
-                                            <label for="nom">Nom</label>
-                                            <input type="text" class="form-control" placeholder="Entré le nom" name='name' id="name" required />
+                                            <label for="nom">Username</label>
+                                            <input type="text" class="form-control" placeholder="Entré le nom" name='email' id="email" required />
                                         </div>
                                         <div class="form-group">
                                             <label for="email">Email</label>
@@ -180,7 +180,7 @@
 				
 				<div class="card-box mb-30">
 					<div class="pd-20">
-						<h4 class="text-blue h4">Liste des Clients</h4>						
+						<h4 class="text-blue h4">Liste des utilisateurs</h4>						
 					</div>
 					<div class="pb-20">
 						<table class="data-table table stripe hover nowrap">
@@ -202,7 +202,7 @@
 							<div role="document" class="modal-dialog">
 							<div class="modal-content">
 								<div class="modal-header">
-									<h5 id="exampleModalLabel" class="modal-title">Update Client</h5>
+									<h5 id="exampleModalLabel" class="modal-title">Update users</h5>
 									<button type="button" data-dismiss="modal" aria-label="Close" class="close"><span aria-hidden="true">×</span></button>
 								</div>
 								<div class="modal-body col-md-12">			
@@ -215,7 +215,7 @@
                                         </div>
                                         <div class="form-group">
                                             <label for="email">Email</label>
-                                            <input type="email" class="form-control" placeholder="Email" name='mail' id="mail" required />
+                                            <input type="email" class="form-control" placeholder="Email" name='email' id="email" required />
                                         </div>
                                         <div class="form-group">
                                             <label for="email">Password</label>

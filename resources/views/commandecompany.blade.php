@@ -152,13 +152,13 @@
 									<h5 id="exampleModalLabel" class="modal-title">Add Commande</h5>
 									<button type="button" data-dismiss="modal" aria-label="Close" class="close"><span aria-hidden="true">×</span></button>
 								</div>
-								<div class="modal-body col-md-12">						
+									<div class="modal-body col-md-12">						
                                         <form id="forme" method="POST" Action="savecmdclient.php" class="form-horizontal col-md-12" autocomplete="off">
                                             <div class="row">
                                                 <div class="col-md-6  mt-3 text-left">                            
                                                     <div class="form-group">
                                                         <label for="fournisseur">Fournisseur</label>
-                                                        <select class="form-control" name="client" >
+                                                        <select class="form-control" name="fournisseur_id" id="fournisseur_id">
                                                             <optgroup >																				
                                                                 <option value=""></option>													
                                                             </optgroup>	
@@ -167,7 +167,7 @@
                                                     <div class="form-group">
                                                         <label for="produit">Produit</label>
                                                         <select  
-                                                            class="form-control" name="produit" >
+                                                            class="form-control" name="produit_id" id="produit_id" >
                                                             <optgroup >																								
                                                                 <option value=""></option>														
                                                             </optgroup>
@@ -175,23 +175,23 @@
                                                     </div>                         
                                                     <div class="form-group">
                                                         <label for="quantite">Quantité</label>
-                                                        <input type="number" class="form-control" min="0" placeholder="quantité" name="quantite" oninput="this.value = Math.abs(this.value)" required/>
+                                                        <input type="number" class="form-control" min="0" placeholder="quantité" name="quantite" id="quantite" oninput="this.value = Math.abs(this.value)" required/>
                                                     </div>                                                    
                                                 </div>
                                                 <div class="col-md-6  mt-3 text-left">  
                                                     <div class="form-group">
                                                         <label for="prix">Prix unitaire</label>
-                                                        <input type="number" class="form-control" placeholder="Prix unitaire" name="prix" min="0" oninput="this.value = Math.abs(this.value)" required/>
+                                                        <input type="number" class="form-control" placeholder="Prix unitaire" name="prix" id="prix" min="0" oninput="this.value = Math.abs(this.value)" required/>
                                                     </div>                       
                                                     <div class="form-group">
                                                         <label for="devise">Devise</label>
-                                                        <select class="form-control" name="devise" >
+                                                        <select class="form-control" name="devise" id="devise">
                                                             <option>USD</option>
                                                         </select>
                                                     </div>
                                                     <div class="form-group">
                                                         <label for="date">Date</label>
-                                                        <input type="date" class="form-control" placeholder="date" name="dateoperation" required/>
+                                                        <input type="date" class="form-control"  name="datecmd" id="datecmd" required/>
                                                     </div>                        
                                                 </div>
                                             </div>
@@ -234,13 +234,14 @@
 									<h5 id="exampleModalLabel" class="modal-title">Update Client</h5>
 									<button type="button" data-dismiss="modal" aria-label="Close" class="close"><span aria-hidden="true">×</span></button>
 								</div>
-								<div class="modal-body col-md-12">						
-                                <form id="forme" method="POST" Action="savecmdclient.php" class="form-horizontal col-md-12" autocomplete="off">
-                                            <div class="row">
-                                                <div class="col-md-6  mt-3 text-left">                            
+									<div class="modal-body col-md-12">						
+										<form id="forme" method="POST" Action="" class="form-horizontal col-md-12" autocomplete="off">				            
+											<div class="row">
+                                                <div class="col-md-6  mt-3 text-left">
+													<input type="hidden" name="id" id="id" value="" class="form-control" required/>	                            
                                                     <div class="form-group">
-                                                        <label for="client">Clients</label>
-                                                        <select class="form-control" name="client" >
+                                                        <label for="fournisseur">Fournisseur</label>
+                                                        <select class="form-control" name="fournisseur_id" id="fournisseur_id">
                                                             <optgroup >																				
                                                                 <option value=""></option>													
                                                             </optgroup>	
@@ -249,7 +250,7 @@
                                                     <div class="form-group">
                                                         <label for="produit">Produit</label>
                                                         <select  
-                                                            class="form-control" name="produit" >
+                                                            class="form-control" name="produit_id" id="produit_id" >
                                                             <optgroup >																								
                                                                 <option value=""></option>														
                                                             </optgroup>
@@ -257,23 +258,23 @@
                                                     </div>                         
                                                     <div class="form-group">
                                                         <label for="quantite">Quantité</label>
-                                                        <input type="number" class="form-control" min="0" placeholder="quantité" name="quantite" oninput="this.value = Math.abs(this.value)" required/>
+                                                        <input type="number" class="form-control" min="0" placeholder="quantité" name="quantite" id="quantite" oninput="this.value = Math.abs(this.value)" required/>
                                                     </div>                                                    
                                                 </div>
                                                 <div class="col-md-6  mt-3 text-left">  
                                                     <div class="form-group">
                                                         <label for="prix">Prix unitaire</label>
-                                                        <input type="number" class="form-control" placeholder="Prix unitaire" name="prix" min="0" oninput="this.value = Math.abs(this.value)" required/>
+                                                        <input type="number" class="form-control" placeholder="Prix unitaire" name="prix" id="prix" min="0" oninput="this.value = Math.abs(this.value)" required/>
                                                     </div>                       
                                                     <div class="form-group">
                                                         <label for="devise">Devise</label>
-                                                        <select class="form-control" name="devise" >
+                                                        <select class="form-control" name="devise" id="devise">
                                                             <option>USD</option>
                                                         </select>
                                                     </div>
                                                     <div class="form-group">
                                                         <label for="date">Date</label>
-                                                        <input type="date" class="form-control" placeholder="date" name="dateoperation" required/>
+                                                        <input type="date" class="form-control"  name="datecmd" id="datecmd" required/>
                                                     </div>                        
                                                 </div>
                                             </div>

@@ -152,52 +152,42 @@
 									<h5 id="exampleModalLabel" class="modal-title">Add client</h5>
 									<button type="button" data-dismiss="modal" aria-label="Close" class="close"><span aria-hidden="true">×</span></button>
 								</div>
-								<div class="modal-body col-md-12">						
-									<form id="forme" method="POST" Action="savefournisseur.php" class="form-horizontal col-md-12" autocomplete="off">										
-                                        <div class="row">
-                                            <div class="col-md-6 mt-3">
-                                                <div class="form-group">
-                                                    <label for="nom">Nom</label>
-                                                    <input type="text" class="form-control" placeholder="Entré le nom" name='nom' required />
-                                                </div>
-                                                <div class="form-group">
-                                                    <label for="prenom">Prénom</label>
-                                                    <input type="text" class="form-control" placeholder="Entré le prénom" name='prenom' required />
-                                                </div>
-                                                <div class="form-group">
-                                                    <label for="sexe">Sexe</label>
-                                                    <select  class="form-control" name='sexe' required >
-                                                            <option>M</option>
-                                                            <option>F</option>
-                                                    </select>
-                                                </div>                                                 
-                                            </div>
-                                            <div class="col-md-6 mt-3">
-                                                    <div class="form-group">
-                                                        <label for="adresse">Adresse</label>
-                                                        <input type="text" class="form-control" placeholder="Entré l'adresse" name='adresse' required />
-                                                    </div> 
-                                                    <div class="form-group">
-                                                        <label for="telephone">Telephone</label>
-                                                        <input type="tel" class="form-control" min="0" placeholder="+243 ... ... ..." name='telephone' required />
-                                                    </div>                             
-                                                    <div class="form-group">
-                                                        <label for="adresse">Email</label>
-                                                        <input type="email" class="form-control" placeholder="exemple@gmail.com" name='mail' required />
-                                                    </div>
-                                                </div>      
-                                            </div>                        
-                                            <div class="form-group">                               
-                                                <input type="submit" class="btn btn-primary col-md-6 mt-4 ml-5" value="Enregistrer" />
-                                            </div> 																								
-									</form>
+									<div class="modal-body col-md-12">						
+										<form id="forme" method="POST" Action="savefournisseur.php" class="form-horizontal col-md-12" autocomplete="off">										
+											<div class="form-group">
+												<label for="nom">Nom</label>
+												<input type="text" class="form-control" placeholder="Entré le nom" name='noms' id="noms" required />
+											</div>                                                
+											<div class="form-group">
+												<label for="sexe">Sexe</label>
+												<select  class="form-control" name='sexe' id="sexe" required >
+													<option>M</option>
+													<option>F</option>
+												</select>
+											</div> 
+											<div class="form-group">
+												<label for="adresse">Adresse</label>
+												<input type="text" class="form-control" placeholder="Entré l'adresse" name='adresse' id="adresse" required />
+											</div>
+											<div class="form-group">
+												<label for="telephone">Telephone</label>
+												<input type="tel" class="form-control" min="0" placeholder="+243 ... ... ..." name='telephone' id="telephone" required />
+											</div>                             
+											<div class="form-group">
+												<label for="adresse">Email</label>
+												<input type="email" class="form-control" placeholder="exemple@gmail.com" name='mail' id="mail" required />
+											</div>                         
+											<div class="form-group">                               
+												<input type="submit" class="btn btn-primary col-md-6 mt-4 ml-5" value="Enregistrer" />
+											</div> 																								
+										</form>
 									</div>
 								</div>								                        
 							</div>							
 						</div>							
-						</div>
 					</div>
 				</div>
+			</div>
 				
 				<div class="card-box mb-30">
 					<div class="pd-20">
@@ -228,39 +218,30 @@
 								</div>
 								<div class="modal-body col-md-12">						
 									<form id="forme_edit" method="POST" Action="editfournisseur.php" class="form-horizontal" autocomplete="off">
-									<input type="hidden" name="id" id="id" value="" class="form-control" required/>										
-									    <div class="row">
-                                            <div class="col-md-6 mt-3">
-                                                <div class="form-group">
-                                                    <label for="nom">Nom</label>
-                                                    <input type="text" class="form-control" placeholder="Entré le nom" name='nom' value="" required />
-                                                </div>
-                                                <div class="form-group">
-                                                    <label for="prenom">Prénom</label>
-                                                    <input type="text" class="form-control" placeholder="Entré le prénom" name='prenom' value="" required />
-                                                </div>
-                                                <div class="form-group">
-                                                    <label for="sexe">Sexe</label>
-                                                    <select  class="form-control" name='sexe' value="" required >
-                                                            <option value=""></option>                                                                                                                      
-                                                    </select>
-                                                </div>                                                 
-                                            </div>
-                                                <div class="col-md-6 mt-3">
-                                                    <div class="form-group">
-                                                        <label for="adresse">Adresse</label>
-                                                        <input type="text" class="form-control" placeholder="Entré l'adresse" name='adresse' value="" required />
-                                                    </div> 
-                                                    <div class="form-group">
-                                                        <label for="telephone">Telephone</label>
-                                                        <input type="tel" class="form-control" min="0" placeholder="+243 ... ... ..." oninput="this.value = Math.abs(this.value)" name='telephone' value="" required />
-                                                    </div>                             
-                                                    <div class="form-group">
-                                                        <label for="adresse">Email</label>
-                                                        <input type="email" class="form-control" placeholder="exemple@gmail.com" name='mail' value="" required />
-                                                    </div>
-                                                </div>      
-                                            </div>                        
+										<input type="hidden" name="id" id="id" value="" class="form-control" required/>										
+											<div class="form-group">
+												<label for="nom">Nom</label>
+												<input type="text" class="form-control" placeholder="Entré le nom" name='noms' id="noms" required />
+											</div>                                                
+											<div class="form-group">
+												<label for="sexe">Sexe</label>
+												<select  class="form-control" name='sexe' id="sexe" required >
+													<option>M</option>
+													<option>F</option>
+												</select>
+											</div> 
+											<div class="form-group">
+												<label for="adresse">Adresse</label>
+												<input type="text" class="form-control" placeholder="Entré l'adresse" name='adresse' id="adresse" required />
+											</div>
+											<div class="form-group">
+												<label for="telephone">Telephone</label>
+												<input type="tel" class="form-control" min="0" placeholder="+243 ... ... ..." name='telephone' id="telephone" required />
+											</div>                             
+											<div class="form-group">
+												<label for="adresse">Email</label>
+												<input type="email" class="form-control" placeholder="exemple@gmail.com" name='mail' id="mail" required />
+											</div>                         
                                             <div class="form-group">                               
                                                 <input type="submit" class="btn btn-primary col-md-6 mt-4 ml-5" value="Modifier" />
                                             </div> 																											

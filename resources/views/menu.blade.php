@@ -64,7 +64,7 @@ height: 65px;
 							<span class="micon dw dw-settings"></span><span class="mtext">Parametre</span>
 						</a>
 						<ul class="submenu">							
-							<li><a href="/user">Utilisateurs</a></li>
+							<li><a href="/users">Utilisateurs</a></li>
 							<li><a href="/alerte">Stock Alerte</a></li>																			
 						</ul>
 					</li>													

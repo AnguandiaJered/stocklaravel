@@ -157,7 +157,7 @@
                                                     <div class="col-md-6  mt-3 text-left">                            
                                                         <div class="form-group">
                                                             <label for="client">Clients</label>
-                                                            <select class="form-control" name="client" >
+                                                            <select class="form-control" name="client_id" id="client_id" >
                                                                 <optgroup >																								
                                                                     <option value=""></option>														
                                                                 </optgroup>	
@@ -166,7 +166,7 @@
                                                         <div class="form-group">
                                                             <label for="produit">Produit</label>
                                                             <select  
-                                                                class="form-control" name="produit" >
+                                                                class="form-control" name="produit_id" id="produit_id" >
                                                                 <optgroup >																								
                                                                     <option value=""></option>													
                                                                 </optgroup>
@@ -174,23 +174,23 @@
                                                         </div>                         
                                                         <div class="form-group">
                                                             <label for="quantite">Quantité</label>
-                                                            <input type="number" class="form-control" placeholder="quantité" name="quantite" min="0" oninput="this.value = Math.abs(this.value)" required/>
+                                                            <input type="number" class="form-control" placeholder="quantité" name="quantite" id="quantite" min="0" oninput="this.value = Math.abs(this.value)" required/>
                                                         </div>                                                    
                                                     </div>
                                                     <div class="col-md-6  mt-3 text-left">  
                                                         <div class="form-group">
                                                             <label for="prix">Prix unitaire</label>
-                                                            <input type="number" class="form-control" placeholder="Prix unitaire" name="prix" min="0" oninput="this.value = Math.abs(this.value)" required/>
+                                                            <input type="number" class="form-control" placeholder="Prix unitaire" id="prix" name="prix" min="0" oninput="this.value = Math.abs(this.value)" required/>
                                                         </div>                       
                                                         <div class="form-group">
                                                             <label for="devise">Devise</label>
-                                                            <select class="form-control" name="devise" >
+                                                            <select class="form-control" name="devise" id="devise" >
                                                                 <option>USD</option>                                                                
                                                             </select>
                                                         </div>
                                                         <div class="form-group">
                                                             <label for="date">Date</label>
-                                                            <input type="date" class="form-control" placeholder="date" name="dateoperation" required/>
+                                                            <input type="date" class="form-control" name="dateprovision" id="dateprovision" required/>
                                                         </div>                        
                                                     </div>
                                                 </div>
@@ -233,52 +233,52 @@
 									<h5 id="exampleModalLabel" class="modal-title">Update sortie</h5>
 									<button type="button" data-dismiss="modal" aria-label="Close" class="close"><span aria-hidden="true">×</span></button>
 								</div>
-								<div class="modal-body col-md-12">						
-                                    <form id="forme" method="POST" Action="saveSortie.php" class="form-horizontal col-md-12" autocomplete="off">
-                                                <div class="row">
-                                                    <div class="col-md-6  mt-3 text-left">                            
-                                                        <div class="form-group">
-                                                            <label for="client">Clients</label>
-                                                            <select class="form-control" name="client" >
-                                                                <optgroup >																								
-                                                                    <option value=""></option>														
-                                                                </optgroup>	
-                                                            </select>
-                                                        </div>
-                                                        <div class="form-group">
-                                                            <label for="produit">Produit</label>
-                                                            <select  
-                                                                class="form-control" name="produit" >
-                                                                <optgroup >																								
-                                                                    <option value=""></option>													
-                                                                </optgroup>
-                                                            </select>
-                                                        </div>                         
-                                                        <div class="form-group">
-                                                            <label for="quantite">Quantité</label>
-                                                            <input type="number" class="form-control" placeholder="quantité" name="quantite" min="0" oninput="this.value = Math.abs(this.value)" required/>
-                                                        </div>                                                    
+									<div class="modal-body col-md-12">						
+										<form id="forme" method="POST" Action="" class="form-horizontal col-md-12" autocomplete="off">
+											<div class="row">
+                                                <div class="col-md-6  mt-3 text-left"> 
+													<input type="hidden" name="id" id="id" value="" class="form-control" required/>                           
+                                                    <div class="form-group">
+                                                        <label for="client">Clients</label>
+                                                        <select class="form-control" name="client_id" id="client_id" >
+                                                            <optgroup >																								
+                                                                <option value=""></option>														
+                                                            </optgroup>	
+                                                        </select>
                                                     </div>
-                                                    <div class="col-md-6  mt-3 text-left">  
-                                                        <div class="form-group">
-                                                            <label for="prix">Prix unitaire</label>
-                                                            <input type="number" class="form-control" placeholder="Prix unitaire" name="prix" min="0" oninput="this.value = Math.abs(this.value)" required/>
-                                                        </div>                       
-                                                        <div class="form-group">
-                                                            <label for="devise">Devise</label>
-                                                            <select class="form-control" name="devise" >
-                                                                <option>USD</option>                                                                
-                                                            </select>
-                                                        </div>
-                                                        <div class="form-group">
-                                                            <label for="date">Date</label>
-                                                            <input type="date" class="form-control" placeholder="date" name="dateoperation" required/>
-                                                        </div>                        
-                                                    </div>
+                                                    <div class="form-group">
+                                                        <label for="produit">Produit</label>
+                                                        <select class="form-control" name="produit_id" id="produit_id" >
+                                                            <optgroup >																								
+                                                                <option value=""></option>													
+                                                            </optgroup>
+                                                        </select>
+                                                    </div>                         
+                                                    <div class="form-group">
+                                                        <label for="quantite">Quantité</label>
+                                                        <input type="number" class="form-control" placeholder="quantité" name="quantite" id="quantite" min="0" oninput="this.value = Math.abs(this.value)" required/>
+                                                    </div>                                                    
                                                 </div>
-                                                <div class="form-group">                               
-                                                    <input type="submit" class="btn btn-primary col-md-5 mt-3 mr-5" value="Modifier" required/>
-                                                </div> 
+                                                <div class="col-md-6  mt-3 text-left">  
+                                                    <div class="form-group">
+                                                        <label for="prix">Prix unitaire</label>
+                                                        <input type="number" class="form-control" placeholder="Prix unitaire" id="prix" name="prix" min="0" oninput="this.value = Math.abs(this.value)" required/>
+                                                    </div>                       
+                                                    <div class="form-group">
+                                                        <label for="devise">Devise</label>
+                                                        <select class="form-control" name="devise" id="devise" >
+                                                            <option>USD</option>                                                                
+                                                        </select>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label for="date">Date</label>
+                                                        <input type="date" class="form-control" name="dateprovision" id="dateprovision" required/>
+                                                    </div>                        
+                                                </div>
+                                            </div>
+                                            <div class="form-group">                               
+                                                <input type="submit" class="btn btn-primary col-md-5 mt-3 mr-5" value="Modifier" required/>
+                                            </div> 
                                         </form>
 									</div>
 								</div>								                        

@@ -152,37 +152,36 @@
 									<h5 id="exampleModalLabel" class="modal-title">Add Produit Perdu</h5>
 									<button type="button" data-dismiss="modal" aria-label="Close" class="close"><span aria-hidden="true">×</span></button>
 								</div>
-								<div class="modal-body col-md-12">						
-                                    <form id="forme" method="POST" Action="saveperte.php" class="form-horizontal col-md-12" autocomplete="off">										
-                                        <div class="row">
-                                            <div class="col-md-12 ml-2">
-                                                <div class="form-group">
-                                                    <label for="produit">Produits</label>
-                                                    <select  class="form-control" name="produit" >
-                                                        <optgroup >																								
-                                                            <option value=""></option>														
-                                                        </optgroup>
-                                                    </select>
-                                                </div>
-                                                <div class="form-group">
-                                                    <label for="dateActuel">Date</label>
-                                                    <input type="date" class="form-control" placeholder="date perte" name="dateperte" />
-                                                </div> 
-                                                <div class="form-group">
-                                                    <label for="quantite">Quantité</label>
-                                                    <input type="number" class="form-control" min="0" oninput="this.value = Math.abs(this.value)" placeholder="Quantité" name="quantite" />
-                                                </div>                                                                            
-                                                <div class="form-group">
-                                                    <label for="dateActuel">Type gaspillage</label>
-                                                    <input type="text" class="form-control" placeholder="Type gaspillage" name="typegaspillage" />
-                                                </div> 
-                                            
-                                            </div>  
-                                        </div>                      
-                                            <div class="form-group">                               
-                                                <input type="submit" class="btn btn-primary col-md-6 mt-4 ml-5" value="Enregistrer" />
-                                            </div> 																								
-									</form>
+									<div class="modal-body col-md-12">						
+										<form id="forme" method="POST" Action="saveperte.php" class="form-horizontal col-md-12" autocomplete="off">										
+											<div class="row">
+												<div class="col-md-12 ml-2">
+													<div class="form-group">
+														<label for="produit">Produits</label>
+														<select  class="form-control" name="produit_id" id="produit_id">
+															<optgroup >																								
+																<option value=""></option>														
+															</optgroup>
+														</select>
+													</div>                                               
+													<div class="form-group">
+														<label for="quantite">Quantité</label>
+														<input type="number" class="form-control" id="quantite" min="0" oninput="this.value = Math.abs(this.value)" placeholder="Quantité" name="quantite" />
+													</div> 
+													<div class="form-group">
+														<label for="dateActuel">Date</label>
+														<input type="date" class="form-control" placeholder="date perte" id="dateperte" name="dateperte" />
+													</div>                                                                           
+													<div class="form-group">
+														<label for="dateActuel">Type gaspillage</label>
+														<input type="text" class="form-control" placeholder="Type gaspillage" id="typegaspillage" name="typegaspillage" />
+													</div>
+												</div>  
+											</div>                      
+											<div class="form-group">                               
+												<input type="submit" class="btn btn-primary col-md-6 mt-4 ml-5" value="Enregistrer" />
+											</div> 																								
+										</form>
 									</div>
 								</div>								                        
 							</div>							
@@ -218,37 +217,37 @@
 									<h5 id="exampleModalLabel" class="modal-title">Update Produit Perdu</h5>
 									<button type="button" data-dismiss="modal" aria-label="Close" class="close"><span aria-hidden="true">×</span></button>
 								</div>
-								<div class="modal-body col-md-12">						
-                                <form id="forme" method="POST" Action="saveperte.php" class="form-horizontal col-md-12" autocomplete="off">										
-                                        <div class="row">
-                                            <div class="col-md-12 ml-2">
-                                                <div class="form-group">
-                                                    <label for="produit">Produits</label>
-                                                    <select  class="form-control" name="produit" >
-                                                        <optgroup >																								
-                                                            <option value=""></option>														
-                                                        </optgroup>
-                                                    </select>
-                                                </div>
-                                                <div class="form-group">
-                                                    <label for="dateActuel">Date</label>
-                                                    <input type="date" class="form-control" placeholder="date perte" name="dateperte" />
-                                                </div> 
-                                                <div class="form-group">
-                                                    <label for="quantite">Quantité</label>
-                                                    <input type="number" class="form-control" min="0" oninput="this.value = Math.abs(this.value)" placeholder="Quantité" name="quantite" />
-                                                </div>                                                                            
-                                                <div class="form-group">
-                                                    <label for="dateActuel">Type gaspillage</label>
-                                                    <input type="text" class="form-control" placeholder="Type gaspillage" name="typegaspillage" />
-                                                </div> 
-                                            
-                                            </div>  
-                                        </div>                      
+									<div class="modal-body col-md-12">						
+										<form id="forme" method="POST" Action="" class="form-horizontal col-md-12" autocomplete="off">										
+											<div class="row">
+												<div class="col-md-12 ml-2">
+													<div class="form-group">
+														<input type="hidden" name="id" id="id" value="" class="form-control" required/>
+														<label for="produit">Produits</label>
+														<select  class="form-control" name="produit_id" id="produit_id">
+															<optgroup >																								
+																<option value=""></option>														
+															</optgroup>
+														</select>
+													</div>                                               
+													<div class="form-group">
+														<label for="quantite">Quantité</label>
+														<input type="number" class="form-control" id="quantite" min="0" oninput="this.value = Math.abs(this.value)" placeholder="Quantité" name="quantite" />
+													</div> 
+													<div class="form-group">
+														<label for="dateActuel">Date</label>
+														<input type="date" class="form-control" placeholder="date perte" id="dateperte" name="dateperte" />
+													</div>                                                                           
+													<div class="form-group">
+														<label for="dateActuel">Type gaspillage</label>
+														<input type="text" class="form-control" placeholder="Type gaspillage" id="typegaspillage" name="typegaspillage" />
+													</div>
+												</div>  
+											</div>                                
                                             <div class="form-group">                               
                                                 <input type="submit" class="btn btn-primary col-md-6 mt-4 ml-5" value="Modifier" />
                                             </div> 																								
-									</form>
+										</form>
 									</div>
 								</div>								                        
 							</div>							

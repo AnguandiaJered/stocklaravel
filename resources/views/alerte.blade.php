@@ -167,20 +167,16 @@
 								</div>								                        
 							</div>							
 						</div>				
-                <div class="card-box mb-50 container"><br>
-                <button data-toggle="modal" data-target="#myModalcate" class="btn btn-primary">Add categorie</button>
-				<a class="btn btn-primary offset-8" href="fpdf/tutorial/produit.php">Imprimer</a>    	
+                <div class="card-box mb-50 container"><br>                  	
 					<div class="pd-20">
-						<h4 class="text-blue h4">Liste des Produits</h4>                  						
+						<!-- <h4 class="text-blue h4">Liste des Produits</h4>                  						 -->
 					</div>
 					<div class="pb-20">
 						<table class="data-table table stripe hover nowrap">
 							<thead>
 								<tr>
-									<th class="table-plus datatable-nosort">#</th>
-									<th>Designation</th>									
-									<th>Quantité</th>												
-                                    <th>Categorie</th>									
+									<th class="table-plus datatable-nosort">#</th>									
+									<th>Quantité</th>											
 									<th class="datatable-nosort">Action</th>
 								</tr>
 							</thead>
@@ -223,8 +219,6 @@
                                         </div>
                                     </div>
 									<td class="table-plus"></td>
-									<td></td>
-									<td></td>
 									<td></td>																		
 									<td>
 										<div class="dropdown">

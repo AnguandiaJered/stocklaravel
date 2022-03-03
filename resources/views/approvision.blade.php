@@ -159,7 +159,7 @@
                                                         <div class="form-group">
                                                             <label for="produit">Produit</label>
                                                             <select  
-                                                                class="form-control" name="produit" >
+                                                                class="form-control" name="produit_id" id="produit_id" >
                                                                 <optgroup >																					
                                                                     <option value=""></option>											
                                                                 </optgroup>
@@ -167,7 +167,7 @@
                                                         </div> 
                                                         <div class="form-group">
                                                             <label for="fournisseur">Fournisseur</label>
-                                                            <select class="form-control" name="fournisseur" >
+                                                            <select class="form-control" name="fournisseur_id" id="fournisseur_id" >
                                                                 <optgroup >																							
                                                                     <option value=""></option>													
                                                                 </optgroup>	
@@ -175,24 +175,23 @@
                                                         </div>                        
                                                         <div class="form-group">
                                                             <label for="quantite">Quantité</label>
-                                                            <input type="number" class="form-control" placeholder="quantité" min="0" name="quantite" oninput="this.value = Math.abs(this.value)" required/>
+                                                            <input type="number" class="form-control" placeholder="quantité" min="0" name="quantite" id="quantite" oninput="this.value = Math.abs(this.value)" required/>
                                                         </div>                                                    
                                                     </div>
                                                     <div class="col-md-6  mt-3 text-left">  
                                                         <div class="form-group">
                                                             <label for="prix">Prix unitaire</label>
-                                                            <input type="number" class="form-control" placeholder="Prix unitaire" min="0" name="prix" oninput="this.value = Math.abs(this.value)" required/>
+                                                            <input type="number" class="form-control" placeholder="Prix unitaire" min="0" name="prix" id="prix" oninput="this.value = Math.abs(this.value)" required/>
                                                         </div>                       
                                                         <div class="form-group">
                                                             <label for="devise">Devise</label>
-                                                            <select class="form-control" name="devise" >
+                                                            <select class="form-control" name="devise" id="devise" >
                                                                 <option>USD</option>
-                                                                <!-- <option>FC</option> -->
                                                             </select>
                                                         </div>
                                                         <div class="form-group">
                                                             <label for="date">Date</label>
-                                                            <input type="date" class="form-control" placeholder="date" name="dateoperation" required/>
+                                                            <input type="date" class="form-control" name="dateprovision" id="dateprovision" required/>
                                                         </div>                        
                                                     </div>
                                                 </div>
@@ -243,7 +242,7 @@
                                                         <div class="form-group">
                                                             <label for="produit">Produit</label>
                                                             <select  
-                                                                class="form-control" name="produit" >
+                                                                class="form-control" name="produit_id" id="produit_id" >
                                                                 <optgroup >																					
                                                                     <option value=""></option>											
                                                                 </optgroup>
@@ -251,7 +250,7 @@
                                                         </div> 
                                                         <div class="form-group">
                                                             <label for="fournisseur">Fournisseur</label>
-                                                            <select class="form-control" name="fournisseur" >
+                                                            <select class="form-control" name="fournisseur_id" id="fournisseur_id" >
                                                                 <optgroup >																							
                                                                     <option value=""></option>													
                                                                 </optgroup>	
@@ -259,24 +258,24 @@
                                                         </div>                        
                                                         <div class="form-group">
                                                             <label for="quantite">Quantité</label>
-                                                            <input type="number" class="form-control" placeholder="quantité" min="0" name="quantite" oninput="this.value = Math.abs(this.value)" required/>
+                                                            <input type="number" class="form-control" placeholder="quantité" min="0" name="quantite" id="quantite" oninput="this.value = Math.abs(this.value)" required/>
                                                         </div>                                                    
                                                     </div>
                                                     <div class="col-md-6  mt-3 text-left">  
                                                         <div class="form-group">
                                                             <label for="prix">Prix unitaire</label>
-                                                            <input type="number" class="form-control" placeholder="Prix unitaire" min="0" name="prix" oninput="this.value = Math.abs(this.value)" required/>
+                                                            <input type="number" class="form-control" placeholder="Prix unitaire" min="0" name="prix" id="prix" oninput="this.value = Math.abs(this.value)" required/>
                                                         </div>                       
                                                         <div class="form-group">
                                                             <label for="devise">Devise</label>
-                                                            <select class="form-control" name="devise" >
+                                                            <select class="form-control" name="devise" id="devise" >
                                                                 <option>USD</option>
                                                                 <!-- <option>FC</option> -->
                                                             </select>
                                                         </div>
                                                         <div class="form-group">
                                                             <label for="date">Date</label>
-                                                            <input type="date" class="form-control" placeholder="date" name="dateoperation" required/>
+                                                            <input type="date" class="form-control" name="dateprovision" id="dateprovision" required/>
                                                         </div>                        
                                                     </div>
                                                 </div>
