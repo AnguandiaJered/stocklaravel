@@ -18,8 +18,8 @@ class CreateFournisseurTable extends Migration
             $table->string('noms');
             $table->string('sexe');
             $table->string('adresse');
-            $table->string('telephone');
-            $table->string('mail');
+            $table->string('telephone',191)->unique();
+            $table->string('mail',191)->unique();
             $table->timestamps();
         });
     }

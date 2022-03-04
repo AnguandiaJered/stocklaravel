@@ -13,7 +13,7 @@
 
         <!-- Mobile Specific Metas -->
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-
+		<meta name="csrf-token" content="{{ csrf_token() }}" />
         <!-- Google Font -->
         <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
         <!-- CSS -->
@@ -22,7 +22,7 @@
         <link rel="stylesheet" type="text/css" href="{{url('assets\src\plugins\datatables\css\dataTables.bootstrap4.min.css')}}">
         <link rel="stylesheet" type="text/css" href="{{url('assets\src\plugins\datatables\css\responsive.bootstrap4.min.css')}}">
         <link rel="stylesheet" type="text/css" href="{{url('assets\vendors\styles\style.css')}}">
-
+		<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 	<script>
 		window.dataLayer = window.dataLayer || [];
 		function gtag(){dataLayer.push(arguments);}
@@ -141,6 +141,13 @@
 									<li class="breadcrumb-item active" aria-current="page">utilisateurs</li>
 								</ol>
 							</nav>
+							@if($errors->any())
+								<div class="alert alert-primary">
+									@foreach ($errors->all() as $item)
+										<p>{{ $item }}</p>
+									@endforeach
+								</div>
+							@endif
 						</div>
 						<div class="col-md-12 col-sm-12 text-right">							
 								<button data-toggle="modal" data-target="#myModal" class="btn btn-primary">Add users</button>
@@ -153,14 +160,15 @@
 									<button type="button" data-dismiss="modal" aria-label="Close" class="close"><span aria-hidden="true">×</span></button>
 								</div>
 								<div class="modal-body col-md-12">						
-									<form id="forme" method="POST" Action="" class="form-horizontal col-md-12" autocomplete="off">										
-                                        <div class="form-group">
+									<form id="formeuser" class="form-horizontal col-md-12" autocomplete="off">										
+                                    @csrf     
+										<div class="form-group">
                                             <label for="nom">Username</label>
-                                            <input type="text" class="form-control" placeholder="Entré le nom" name='email' id="email" required />
+                                            <input type="text" class="form-control" placeholder="Entré le nom" name='name' id="name" required />
                                         </div>
                                         <div class="form-group">
                                             <label for="email">Email</label>
-                                            <input type="email" class="form-control" placeholder="Email" name='mail' id="mail" required />
+                                            <input type="email" class="form-control" placeholder="Email" name='email' id="email" required />
                                         </div>
                                         <div class="form-group">
                                             <label for="email">Password</label>
@@ -188,16 +196,13 @@
 								<tr>
 									<th class="table-plus datatable-nosort">#</th>
 									<th>Nom</th>
-									<th>Prénom</th>
-									<th>Sexe</th>
-									<th>Adresse</th>									
-									<th>Telephone</th>									
-									<th>Email</th>									
+									<th>Email</th>
+									<th>Password</th>									
 									<th class="datatable-nosort">Action</th>
 								</tr>
 							</thead>
 							<tbody>
-							
+							@foreach ($user as $item)
 								<div id="edit" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" class="modal fade text-left">
 							<div role="document" class="modal-dialog">
 							<div class="modal-content">
@@ -228,7 +233,8 @@
 									</div>
 								</div>								                        
 							</div>							
-						</div>								
+						</div>
+														
 								<tr>
 									<div class="modal fade" id="edit">
                                         <div class="modal-dialog modal-success">
@@ -240,13 +246,10 @@
                                           </div>
                                         </div>
                                     </div>
-									<td class="table-plus"></td>
-									<td></td>
-									<td></td>
-									<td></td>
-									<td></td>									
-									<td></td>									
-									<td></td>									
+									<td class="table-plus">{{$item->id}}</td>
+									<td>{{$item->name}}</td>
+									<td>{{$item->email}}</td>
+									<td>{{$item->password}}</td>									
 									<td>
 										<div class="dropdown">
 											<a class="btn btn-link font-24 p-0 line-height-1 no-arrow dropdown-toggle" href="#" role="button" data-toggle="dropdown">
@@ -260,7 +263,7 @@
 										</div>
 									</td>
 								</tr>
-												
+								@endforeach				
 							</tbody>
 						</table>
 					</div>
@@ -288,6 +291,29 @@
 	<script src="{{url('assets\src\plugins\datatables\js\pdfmake.min.js')}}"></script>
 	<script src="{{url('assets\src\plugins\datatables\js\vfs_fonts.js')}}"></script>
 	<!-- Datatable Setting js -->
-	<script src="{{url('assets\vendors\scripts\datatable-setting.js')}}"></script></body>
+	<script src="{{url('assets\vendors\scripts\datatable-setting.js')}}"></script>
+
+	<script>
+        $('#formeuser').submit(function(event){
+
+            event.preventDefault();
+            
+            $.ajax({
+                url:'{{ route("users.store")}}',
+                method: 'POST',
+                data: new FormData(this),
+                processData:false,
+                contentType:false,
+                cache:false,
+                headers:{'X-CSRF-Token':$('meta[name="csrf-token"]').attr('content')},
+                
+                success: function(data){
+                    alert('insert successfully');
+                    $('#formeuser')[0].reset();
+                }
+            });
+        });
+    </script>
+</body>
 
 </html>

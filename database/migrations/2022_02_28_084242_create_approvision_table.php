@@ -15,10 +15,10 @@ class CreateApprovisionTable extends Migration
     {
         Schema::create('approvision', function (Blueprint $table) {
             $table->id();
-            $table->integer('produit_id')->unsigned();
-            $table->integer('fournisseur_id')->unsigned();
-            $table->integer('quantite');
-            $table->integer('prix');
+            $table->unsignedBigInteger('produit_id');
+            $table->unsignedBigInteger('fournisseur_id');
+            $table->unsignedDecimal('quantite');
+            $table->unsignedDecimal('prix');
             $table->string('devise');
             $table->date('dateprovision');
             $table->timestamps();

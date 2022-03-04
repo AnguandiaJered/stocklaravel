@@ -181,7 +181,7 @@
 								</tr>
 							</thead>
 							<tbody>
-							
+							@foreach($alerte as $item)
 						<div id="edit" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" class="modal fade text-left">
 							<div role="document" class="modal-dialog">
                                 <div class="modal-content">
@@ -218,8 +218,8 @@
                                           </div>
                                         </div>
                                     </div>
-									<td class="table-plus"></td>
-									<td></td>																		
+									<td class="table-plus">{{$item->id}}</td>
+									<td>{{$item->quantite}}</td>																		
 									<td>
 										<div class="dropdown">
 											<a class="btn btn-link font-24 p-0 line-height-1 no-arrow dropdown-toggle" href="#" role="button" data-toggle="dropdown">
@@ -233,7 +233,7 @@
 										</div>
 									</td>
 								</tr>
-												
+								@endforeach				
 							</tbody>
 						</table>
 					</div>

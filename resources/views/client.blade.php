@@ -13,7 +13,7 @@
 
         <!-- Mobile Specific Metas -->
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-
+		<meta name="csrf-token" content="{{ csrf_token() }}" />
         <!-- Google Font -->
         <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
         <!-- CSS -->
@@ -22,7 +22,7 @@
         <link rel="stylesheet" type="text/css" href="{{url('assets\src\plugins\datatables\css\dataTables.bootstrap4.min.css')}}">
         <link rel="stylesheet" type="text/css" href="{{url('assets\src\plugins\datatables\css\responsive.bootstrap4.min.css')}}">
         <link rel="stylesheet" type="text/css" href="{{url('assets\vendors\styles\style.css')}}">
-
+		<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
 	<script>
 		window.dataLayer = window.dataLayer || [];
 		function gtag(){dataLayer.push(arguments);}
@@ -153,7 +153,8 @@
 									<button type="button" data-dismiss="modal" aria-label="Close" class="close"><span aria-hidden="true">×</span></button>
 								</div>
 									<div class="modal-body col-md-12">						
-										<form id="forme" method="POST" Action="savefournisseur.php" class="form-horizontal col-md-12" autocomplete="off">										
+										<form id="formeclient" class="form-horizontal col-md-12" autocomplete="off">										
+										@csrf 
 											<div class="form-group">
 												<label for="nom">Nom</label>
 												<input type="text" class="form-control" placeholder="Entré le nom" name='noms' id="noms" required />
@@ -198,8 +199,7 @@
 							<thead>
 								<tr>
 									<th class="table-plus datatable-nosort">#</th>
-									<th>Nom</th>
-									<th>Prénom</th>
+									<th>Noms</th>
 									<th>Sexe</th>
 									<th>Adresse</th>									
 									<th>Telephone</th>									
@@ -208,7 +208,7 @@
 								</tr>
 							</thead>
 							<tbody>
-							
+							@foreach ($client as $item)
 								<div id="edit" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" class="modal fade text-left">
 							<div role="document" class="modal-dialog">
 							<div class="modal-content">
@@ -261,13 +261,12 @@
                                           </div>
                                         </div>
                                     </div>
-									<td class="table-plus"></td>
-									<td></td>
-									<td></td>
-									<td></td>
-									<td></td>									
-									<td></td>									
-									<td></td>									
+									<td class="table-plus">{{$item->id}}</td>
+									<td>{{$item->noms}}</td>
+									<td>{{$item->sexe}}</td>
+									<td>{{$item->adresse}}</td>
+									<td>{{$item->telephone}}</td>									
+									<td>{{$item->mail}}</td>																		
 									<td>
 										<div class="dropdown">
 											<a class="btn btn-link font-24 p-0 line-height-1 no-arrow dropdown-toggle" href="#" role="button" data-toggle="dropdown">
@@ -281,7 +280,7 @@
 										</div>
 									</td>
 								</tr>
-												
+								@endforeach				
 							</tbody>
 						</table>
 					</div>
@@ -309,6 +308,27 @@
 	<script src="{{url('assets\src\plugins\datatables\js\pdfmake.min.js')}}"></script>
 	<script src="{{url('assets\src\plugins\datatables\js\vfs_fonts.js')}}"></script>
 	<!-- Datatable Setting js -->
-	<script src="{{url('assets\vendors\scripts\datatable-setting.js')}}"></script></body>
+	<script src="{{url('assets\vendors\scripts\datatable-setting.js')}}"></script>
+		<script type="text/javascript">
+			$('#formeclient').submit(function(e){
 
+				e.preventDefault();
+
+				$.ajax({
+					url:'{{ route("client.store")}}',
+					method: 'POST',
+					data: new FormData(this),
+					processData:false,
+					contentType:false,
+					cache:false,
+					headers:{'X-CSRF-Token':$('meta[name="csrf-token"]').attr('content')},
+					
+					success: function(data){
+						alert('insert successfully');
+						$('#formeclient')[0].reset();
+					}
+				});
+			});			
+		</script>
+	</body>
 </html>

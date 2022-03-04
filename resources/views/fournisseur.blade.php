@@ -153,7 +153,7 @@
 									<button type="button" data-dismiss="modal" aria-label="Close" class="close"><span aria-hidden="true">×</span></button>
 								</div>
 								<div class="modal-body col-md-12">						
-									<form id="forme" method="POST" Action="" class="form-horizontal col-md-12" autocomplete="off">										
+									<form id="formefournisseur" class="form-horizontal col-md-12" autocomplete="off">										
 										<div class="form-group">
 											<label for="nom">Nom</label>
 											<input type="text" class="form-control" placeholder="Entré le nom" name='noms' id="noms" required />
@@ -198,8 +198,7 @@
 							<thead>
 								<tr>
 									<th class="table-plus datatable-nosort">#</th>
-									<th>Nom</th>
-									<th>Prénom</th>
+									<th>Noms</th>
 									<th>Sexe</th>
 									<th>Adresse</th>									
 									<th>Telephone</th>									
@@ -266,8 +265,7 @@
 									<td></td>
 									<td></td>
 									<td></td>									
-									<td></td>									
-									<td></td>									
+									<td></td>																		
 									<td>
 										<div class="dropdown">
 											<a class="btn btn-link font-24 p-0 line-height-1 no-arrow dropdown-toggle" href="#" role="button" data-toggle="dropdown">
@@ -309,6 +307,28 @@
 	<script src="{{url('assets\src\plugins\datatables\js\pdfmake.min.js')}}"></script>
 	<script src="{{url('assets\src\plugins\datatables\js\vfs_fonts.js')}}"></script>
 	<!-- Datatable Setting js -->
-	<script src="{{url('assets\vendors\scripts\datatable-setting.js')}}"></script></body>
+	<script src="{{url('assets\vendors\scripts\datatable-setting.js')}}"></script>
+	<script type="text/javascript">
+			$('#formefournisseur').submit(function(e){
+
+				e.preventDefault();
+
+				$.ajax({
+					url:'{{ route("fournisseur.store")}}',
+					method: 'POST',
+					data: new FormData(this),
+					processData:false,
+					contentType:false,
+					cache:false,
+					headers:{'X-CSRF-Token':$('meta[name="csrf-token"]').attr('content')},
+					
+					success: function(data){
+						alert('insert successfully');
+						$('#formefournisseur')[0].reset();
+					}
+				});
+			});			
+		</script>
+</body>
 
 </html>

@@ -16,8 +16,8 @@ class CreateProduitTable extends Migration
         Schema::create('produit', function (Blueprint $table) {
             $table->id();
             $table->string('designation',191)->unique();
-            $table->integer('quantite');
-            $table->integer('category_id')->unsigned();
+            $table->unsignedDecimal('quantite');
+            $table->unsignedBigInteger('category_id');
             $table->timestamps();
             $table->foreign('category_id')->references('id')->on('category');
         });

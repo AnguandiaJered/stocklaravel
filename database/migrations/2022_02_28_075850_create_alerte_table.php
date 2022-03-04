@@ -15,7 +15,7 @@ class CreateAlerteTable extends Migration
     {
         Schema::create('alerte', function (Blueprint $table) {
             $table->id();
-            $table->integer('quantite');
+            $table->unsignedDecimal('quantite');
             $table->timestamps();
         });
     }

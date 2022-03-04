@@ -15,8 +15,8 @@ class CreatePerteproduitTable extends Migration
     {
         Schema::create('perteproduit', function (Blueprint $table) {
             $table->id();
-            $table->integer('produit_id')->unsigned();
-            $table->integer('quantite');
+            $table->unsignedBigInteger('produit_id');
+            $table->unsignedDecimal('quantite');
             $table->date('dateperte');
             $table->string('typegaspillage');
             $table->timestamps();

@@ -15,10 +15,10 @@ class CreateCommandeclientTable extends Migration
     {
         Schema::create('commandeclient', function (Blueprint $table) {
             $table->id();
-            $table->integer('client_id')->unsigned();
-            $table->integer('produit_id')->unsigned();           
-            $table->integer('quantite');
-            $table->integer('prix');
+            $table->unsignedBigInteger('client_id');
+            $table->unsignedBigInteger('produit_id');           
+            $table->unsignedDecimal('quantite');
+            $table->unsignedDecimal('prix');
             $table->string('devise');
             $table->date('datecmdclient');
             $table->timestamps();

@@ -41,7 +41,7 @@ class ClientController extends Controller
             'sexe'=>'required',
             'adresse'=>'required',
             'telephone'=>'required',
-            'mail'=>'required',         
+            'mail'=>'required'         
         ]);
 
         \DB::table('client')->insert([
@@ -49,9 +49,9 @@ class ClientController extends Controller
             'sexe'=>$request->sexe,
             'adresse'=>$request->adresse,
             'telephone'=>$request->telephone,
-            'mail'=>$request->mail,
+            'mail'=>$request->mail
         ]);
-
+        
         return \redirect()->route('client')->with('message','Inserer avec success');
     }
 
