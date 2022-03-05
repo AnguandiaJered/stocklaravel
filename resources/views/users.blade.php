@@ -203,7 +203,7 @@
 							</thead>
 							<tbody>
 							@foreach ($user as $item)
-								<div id="edit" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" class="modal fade text-left">
+								<div id="edit{{$item->id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" class="modal fade text-left">
 							<div role="document" class="modal-dialog">
 							<div class="modal-content">
 								<div class="modal-header">
@@ -213,18 +213,18 @@
 								<div class="modal-body col-md-12">			
 																		
                                     <form id="forme" method="POST" Action="" class="form-horizontal col-md-12" autocomplete="off">										
-                                        <input type="hidden" name="id" id="id" value="" class="form-control" required/>										    
+                                        <input type="hidden" name="id" id="id" value="{{$item->id}}" class="form-control" required/>										    
                                         <div class="form-group">
                                             <label for="name">Username</label>
-                                            <input type="text" class="form-control" placeholder="Entré le nom" name='name' id="name" required />
+                                            <input type="text" class="form-control" placeholder="Entré le nom" value="{{$item->name}}" name='name' id="name" required />
                                         </div>
                                         <div class="form-group">
                                             <label for="email">Email</label>
-                                            <input type="email" class="form-control" placeholder="Email" name='email' id="email" required />
+                                            <input type="email" class="form-control" placeholder="Email" value="{{$item->email}}" name='email' id="email" required />
                                         </div>
                                         <div class="form-group">
                                             <label for="email">Password</label>
-                                            <input type="password" class="form-control" placeholder="Password" name='password' id="password" required />
+                                            <input type="password" class="form-control" placeholder="Password" value="{{$item->password}}" name='password' id="password" required />
                                         </div>                          
                                         <div class="form-group">                               
                                             <input type="submit" class="btn btn-primary col-md-6 mt-4 ml-5" value="Enregistrer" />
@@ -236,7 +236,7 @@
 						</div>
 														
 								<tr>
-									<div class="modal fade" id="edit">
+									<div class="modal fade" id="edit{{$item->id}}">
                                         <div class="modal-dialog modal-success">
                                           <div class="modal-content">
                                             <div class="modal-header" >
@@ -255,10 +255,9 @@
 											<a class="btn btn-link font-24 p-0 line-height-1 no-arrow dropdown-toggle" href="#" role="button" data-toggle="dropdown">
 												<i class="dw dw-more"></i>
 											</a>
-											<div class="dropdown-menu dropdown-menu-right dropdown-menu-icon-list">
-												<!-- <a class="dropdown-item" href="#"><i class="dw dw-eye"></i> View</a> -->
-												<a class="dropdown-item" data-toggle="modal" data-target="#edit" href="#"><i class="dw dw-edit2"></i> Edit</a>
-												<a class="dropdown-item" onclick= "return (confirm(' Voulez-vous supprimer vraiment cette information ?'));"  href="deletefournisseur.php?id="><i class="dw dw-delete-3"></i> Delete</a>											
+											<div class="dropdown-menu dropdown-menu-right dropdown-menu-icon-list">												
+												<a class="dropdown-item" data-toggle="modal" data-target="#edit{{$item->id}}" href="{{'/users/edit/'.$item->id}}".$id><i class="dw dw-edit2"></i> Edit</a>
+												<a class="dropdown-item" onclick= "return (confirm(' Voulez-vous supprimer vraiment cette information ?'));"  href="{{'/users/delete/'.$item->id}}"><i class="dw dw-delete-3"></i> Delete</a>											
 											</div>
 										</div>
 									</td>
@@ -308,7 +307,7 @@
                 headers:{'X-CSRF-Token':$('meta[name="csrf-token"]').attr('content')},
                 
                 success: function(data){
-                    alert('insert successfully');
+                    alert('Update successfully');
                     $('#formeuser')[0].reset();
                 }
             });

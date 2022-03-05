@@ -209,7 +209,7 @@
 							</thead>
 							<tbody>
 							@foreach ($perteproduit as $item)
-								<div id="edit" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" class="modal fade text-left">
+								<div id="edit{{$item->id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" class="modal fade text-left">
 							<div role="document" class="modal-dialog">
 							<div class="modal-content">
 								<div class="modal-header">
@@ -253,7 +253,7 @@
 							</div>							
 						</div>								
 								<tr>
-									<div class="modal fade" id="edit">
+									<div class="modal fade" id="edit{{$item->id}}">
                                         <div class="modal-dialog modal-success">
                                           <div class="modal-content">
                                             <div class="modal-header" >
@@ -274,9 +274,8 @@
 												<i class="dw dw-more"></i>
 											</a>
 											<div class="dropdown-menu dropdown-menu-right dropdown-menu-icon-list">
-												<!-- <a class="dropdown-item" href="#"><i class="dw dw-eye"></i> View</a> -->
-												<a class="dropdown-item" data-toggle="modal" data-target="#edit" href="#"><i class="dw dw-edit2"></i> Edit</a>
-												<a class="dropdown-item" onclick= "return (confirm(' Voulez-vous supprimer vraiment cette information ?'));"  href="deletefournisseur.php?id="><i class="dw dw-delete-3"></i> Delete</a>											
+												<a class="dropdown-item" data-toggle="modal" data-target="#edit{{$item->id}}" href="{{'/perteproduit/edit/'.$item->id}}".$id><i class="dw dw-edit2"></i> Edit</a>
+												<a class="dropdown-item" onclick= "return (confirm(' Voulez-vous supprimer vraiment cette information ?'));"  href="{{'/perteproduit/delete/'.$item->id}}"><i class="dw dw-delete-3"></i> Delete</a>											
 											</div>
 										</div>
 									</td>

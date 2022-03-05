@@ -68,6 +68,7 @@ Route::get('/fournisseur/delete/{id}', [FournisseurController::class,'destroy'])
 Route::get('/fournisseur', [FournisseurController::class,'index'])->name('fournisseur.index');
 
 
+
 Route::post('/perteproduit/store', [PerteproduitController::class,'store'])->name('perteproduit.store');
 Route::get('/perteproduit/edit/{id}', [PerteproduitController::class,'edit'])->name('perteproduit.edit');
 Route::post('/perteproduit/update', [PerteproduitController::class,'update'])->name('perteproduit.update');

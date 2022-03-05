@@ -182,7 +182,7 @@
 							</thead>
 							<tbody>
 							@foreach($alerte as $item)
-						<div id="edit" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" class="modal fade text-left">
+						<div id="edit{{$item->id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" class="modal fade text-left">
 							<div role="document" class="modal-dialog">
                                 <div class="modal-content">
                                     <div class="modal-header">
@@ -190,7 +190,7 @@
                                         <button type="button" data-dismiss="modal" aria-label="Close" class="close"><span aria-hidden="true">×</span></button>
                                     </div>
                                     <div class="modal-body col-md-12">						
-                                        <form id="formalerte" method="POST" Action="" class="form-horizontal" autocomplete="off">
+                                        <form id="formalerte" class="form-horizontal" autocomplete="off">
 										@csrf    
 											<input type="hidden" name="id" id="id" value="{{$item->id}}" class="form-control" required/>									             
                                             <div class="form-group">
@@ -208,7 +208,7 @@
 					    </div>								
 													
 								<tr>
-									<div class="modal fade" id="edit">
+									<div class="modal fade" id="edit{{$item->id}}">
                                         <div class="modal-dialog modal-success">
                                           <div class="modal-content">
                                             <div class="modal-header" >
@@ -225,10 +225,8 @@
 											<a class="btn btn-link font-24 p-0 line-height-1 no-arrow dropdown-toggle" href="#" role="button" data-toggle="dropdown">
 												<i class="dw dw-more"></i>
 											</a>
-											<div class="dropdown-menu dropdown-menu-right dropdown-menu-icon-list">
-												<!-- <a class="dropdown-item" href="#"><i class="dw dw-eye"></i> View</a> -->
-												<a class="dropdown-item" data-toggle="modal" data-target="#edit" href="#"><i class="dw dw-edit2"></i> Edit</a>
-												<a class="dropdown-item" onclick= "return (confirm(' Voulez-vous supprimer vraiment cette information ?'));"  href="deletefournisseur.php?id="><i class="dw dw-delete-3"></i> Delete</a>											
+											<div class="dropdown-menu dropdown-menu-right dropdown-menu-icon-list">												
+												<a class="dropdown-item" data-toggle="modal" data-target="#edit{{$item->id}}" href="{{'/alerte/edit/'.$item->id}}".$id><i class="dw dw-edit2"></i> Edit</a>												
 											</div>
 										</div>
 									</td>
