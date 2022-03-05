@@ -13,7 +13,7 @@
 
         <!-- Mobile Specific Metas -->
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-
+		<meta name="csrf-token" content="{{ csrf_token() }}" />
         <!-- Google Font -->
         <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
         <!-- CSS -->
@@ -22,7 +22,7 @@
         <link rel="stylesheet" type="text/css" href="{{url('assets\src\plugins\datatables\css\dataTables.bootstrap4.min.css')}}">
         <link rel="stylesheet" type="text/css" href="{{url('assets\src\plugins\datatables\css\responsive.bootstrap4.min.css')}}">
         <link rel="stylesheet" type="text/css" href="{{url('assets\vendors\styles\style.css')}}">
-
+		<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 	<script>
 		window.dataLayer = window.dataLayer || [];
 		function gtag(){dataLayer.push(arguments);}
@@ -153,7 +153,8 @@
 									<button type="button" data-dismiss="modal" aria-label="Close" class="close"><span aria-hidden="true">×</span></button>
 								</div>
 									<div class="modal-body col-md-12">						
-										<form id="forme" method="POST" Action="saveperte.php" class="form-horizontal col-md-12" autocomplete="off">										
+										<form id="formperte" class="form-horizontal col-md-12" autocomplete="off">										
+										@csrf 
 											<div class="row">
 												<div class="col-md-12 ml-2">
 													<div class="form-group">
@@ -199,17 +200,15 @@
 							<thead>
 								<tr>
 									<th class="table-plus datatable-nosort">#</th>
-									<th>Nom</th>
-									<th>Prénom</th>
-									<th>Sexe</th>
-									<th>Adresse</th>									
-									<th>Telephone</th>									
-									<th>Email</th>									
+									<th>Produit</th>
+									<th>Quantité</th>
+									<th>Date Perte</th>
+									<th>Type Gaspillage</th>																		
 									<th class="datatable-nosort">Action</th>
 								</tr>
 							</thead>
 							<tbody>
-							
+							@foreach ($perteproduit as $item)
 								<div id="edit" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" class="modal fade text-left">
 							<div role="document" class="modal-dialog">
 							<div class="modal-content">
@@ -218,29 +217,30 @@
 									<button type="button" data-dismiss="modal" aria-label="Close" class="close"><span aria-hidden="true">×</span></button>
 								</div>
 									<div class="modal-body col-md-12">						
-										<form id="forme" method="POST" Action="" class="form-horizontal col-md-12" autocomplete="off">										
+										<form id="editperte" class="form-horizontal col-md-12" autocomplete="off">										
+										@csrf 
 											<div class="row">
 												<div class="col-md-12 ml-2">
 													<div class="form-group">
-														<input type="hidden" name="id" id="id" value="" class="form-control" required/>
+														<input type="hidden" name="id" id="id" value="{{$item->id}}" class="form-control" required/>
 														<label for="produit">Produits</label>
-														<select  class="form-control" name="produit_id" id="produit_id">
+														<select  class="form-control" name="produit_id" id="produit_id" value="{{$item->produit_id}}">
 															<optgroup >																								
-																<option value=""></option>														
+																<option value="{{$item->produit_id}}">{{$item->produit_id}}</option>														
 															</optgroup>
 														</select>
 													</div>                                               
 													<div class="form-group">
 														<label for="quantite">Quantité</label>
-														<input type="number" class="form-control" id="quantite" min="0" oninput="this.value = Math.abs(this.value)" placeholder="Quantité" name="quantite" />
+														<input type="number" class="form-control" value="{{$item->quantite}}" id="quantite" min="0" oninput="this.value = Math.abs(this.value)" placeholder="Quantité" name="quantite" />
 													</div> 
 													<div class="form-group">
 														<label for="dateActuel">Date</label>
-														<input type="date" class="form-control" placeholder="date perte" id="dateperte" name="dateperte" />
+														<input type="date" class="form-control" placeholder="date perte" value="{{$item->dateperte}}" id="dateperte" name="dateperte" />
 													</div>                                                                           
 													<div class="form-group">
 														<label for="dateActuel">Type gaspillage</label>
-														<input type="text" class="form-control" placeholder="Type gaspillage" id="typegaspillage" name="typegaspillage" />
+														<input type="text" class="form-control" placeholder="Type gaspillage" value="{{$item->typegaspillage}}" id="typegaspillage" name="typegaspillage" />
 													</div>
 												</div>  
 											</div>                                
@@ -263,13 +263,11 @@
                                           </div>
                                         </div>
                                     </div>
-									<td class="table-plus"></td>
-									<td></td>
-									<td></td>
-									<td></td>
-									<td></td>									
-									<td></td>									
-									<td></td>									
+									<td class="table-plus">{{$item->id}}</td>
+									<td>{{$item->produit_id}}</td>
+									<td>{{$item->quantite}}</td>
+									<td>{{$item->dateperte}}</td>
+									<td>{{$item->typegaspillage}}</td>																		
 									<td>
 										<div class="dropdown">
 											<a class="btn btn-link font-24 p-0 line-height-1 no-arrow dropdown-toggle" href="#" role="button" data-toggle="dropdown">
@@ -283,7 +281,7 @@
 										</div>
 									</td>
 								</tr>
-												
+								@endforeach				
 							</tbody>
 						</table>
 					</div>
@@ -311,6 +309,49 @@
 	<script src="{{url('assets\src\plugins\datatables\js\pdfmake.min.js')}}"></script>
 	<script src="{{url('assets\src\plugins\datatables\js\vfs_fonts.js')}}"></script>
 	<!-- Datatable Setting js -->
-	<script src="{{url('assets\vendors\scripts\datatable-setting.js')}}"></script></body>
+	<script src="{{url('assets\vendors\scripts\datatable-setting.js')}}"></script>
+		<script type="text/javascript">
+			$('#formperte').submit(function(e){
+
+				e.preventDefault();
+
+				$.ajax({
+					url:'{{ route("perteproduit.store")}}',
+					method: 'POST',
+					data: new FormData(this),
+					processData:false,
+					contentType:false,
+					cache:false,
+					headers:{'X-CSRF-Token':$('meta[name="csrf-token"]').attr('content')},
+					
+					success: function(data){
+						alert('insert successfully');
+						$('#formperte')[0].reset();
+					}
+				});
+			});			
+		</script>
+		<script type="text/javascript">
+			$('#editperte').submit(function(e){
+
+				e.preventDefault();
+
+				$.ajax({
+					url:'{{ route("perteproduit.update")}}',
+					method: 'POST',
+					data: new FormData(this),
+					processData:false,
+					contentType:false,
+					cache:false,
+					headers:{'X-CSRF-Token':$('meta[name="csrf-token"]').attr('content')},
+					
+					success: function(data){
+						alert('insert successfully');
+						$('#editperte')[0].reset();
+					}
+				});
+			});			
+		</script>
+</body>
 
 </html>

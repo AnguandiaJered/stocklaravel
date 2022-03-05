@@ -41,7 +41,7 @@ class UsersController extends Controller
             'password'=>'required',                   
         ]);
 
-        \DB::table('sortie')->insert([
+        \DB::table('users')->insert([
             'name'=>$request->name,
             'email'=>$request->email,
             'password'=>$request->password,

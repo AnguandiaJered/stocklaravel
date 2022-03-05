@@ -13,7 +13,7 @@
 
         <!-- Mobile Specific Metas -->
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-
+		<meta name="csrf-token" content="{{ csrf_token() }}" />
         <!-- Google Font -->
         <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
         <!-- CSS -->
@@ -22,7 +22,7 @@
         <link rel="stylesheet" type="text/css" href="{{url('assets\src\plugins\datatables\css\dataTables.bootstrap4.min.css')}}">
         <link rel="stylesheet" type="text/css" href="{{url('assets\src\plugins\datatables\css\responsive.bootstrap4.min.css')}}">
         <link rel="stylesheet" type="text/css" href="{{url('assets\vendors\styles\style.css')}}">
-
+		<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 	<script>
 		window.dataLayer = window.dataLayer || [];
 		function gtag(){dataLayer.push(arguments);}
@@ -153,8 +153,9 @@
 									<button type="button" data-dismiss="modal" aria-label="Close" class="close"><span aria-hidden="true">×</span></button>
 								</div>
 								<div class="modal-body col-md-12">						
-                                        <form id="forme" method="POST" Action="" class="form-horizontal col-md-12" autocomplete="off">
-                                            <div class="row">
+                                        <form id="formcmdclient" class="form-horizontal col-md-12" autocomplete="off">
+										@csrf
+											<div class="row">
                                                 <div class="col-md-6  mt-3 text-left">                            
                                                     <div class="form-group">
                                                         <label for="client">Clients</label>
@@ -226,7 +227,7 @@
 								</tr>
 							</thead>
 							<tbody>
-							
+							@foreach ($commandeclient as $item)
 								<div id="edit" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" class="modal fade text-left">
 							<div role="document" class="modal-dialog">
 							<div class="modal-content">
@@ -235,46 +236,47 @@
 									<button type="button" data-dismiss="modal" aria-label="Close" class="close"><span aria-hidden="true">×</span></button>
 								</div>
 									<div class="modal-body col-md-12">						
-										<form id="forme" method="POST" Action="" class="form-horizontal col-md-12" autocomplete="off">
+										<form id="editcmdclient" class="form-horizontal col-md-12" autocomplete="off">
+										@csrf 
 											<div class="row">
                                                 <div class="col-md-6  mt-3 text-left">
-												<input type="hidden" name="id" id="id" value="" class="form-control" required/>	                            
+												<input type="hidden" name="id" id="id" value="{{$item->id}}" class="form-control" required/>	                            
                                                     <div class="form-group">
                                                         <label for="client">Clients</label>
-                                                        <select class="form-control" name="client_id" id="client_id" >
+                                                        <select class="form-control" name="client_id" id="client_id" value="{{$item->client_id}}">
                                                             <optgroup >																				
-                                                                <option value=""></option>													
+                                                                <option value="{{$item->client_id}}">{{$item->client_id}}</option>													
                                                             </optgroup>	
                                                         </select>
                                                     </div>
                                                     <div class="form-group">
                                                         <label for="produit">Produit</label>
                                                         <select  
-                                                            class="form-control" name="produit_id" id="produit_id" >
+                                                            class="form-control" name="produit_id" id="produit_id" value="{{$item->produit_id}}">
                                                             <optgroup >																								
-                                                                <option value=""></option>														
+                                                                <option value="{{$item->produit_id}}">{{$item->produit_id}}</option>														
                                                             </optgroup>
                                                         </select>
                                                     </div>                         
                                                     <div class="form-group">
                                                         <label for="quantite">Quantité</label>
-                                                        <input type="number" class="form-control" min="0" placeholder="quantité" name="quantite" id="quantite" oninput="this.value = Math.abs(this.value)" required/>
+                                                        <input type="number" class="form-control" min="0" value="{{$item->quantite}}" placeholder="quantité" name="quantite" id="quantite" oninput="this.value = Math.abs(this.value)" required/>
                                                     </div>                                                    
                                                 </div>
                                                 <div class="col-md-6  mt-3 text-left">  
                                                     <div class="form-group">
                                                         <label for="prix">Prix unitaire</label>
-                                                        <input type="number" class="form-control" placeholder="Prix unitaire" name="prix" id="id" min="0" oninput="this.value = Math.abs(this.value)" required/>
+                                                        <input type="number" class="form-control" placeholder="Prix unitaire" value="{{$item->prix}}" name="prix" id="id" min="0" oninput="this.value = Math.abs(this.value)" required/>
                                                     </div>                       
                                                     <div class="form-group">
                                                         <label for="devise">Devise</label>
-                                                        <select class="form-control" name="devise" id="devise" >
-                                                            <option>USD</option>
+                                                        <select class="form-control" name="devise" id="devise" value="{{$item->devise}}" >
+                                                            <option value="{{$item->devise}}">{{$item->devise}}</option>
                                                         </select>
                                                     </div>
                                                     <div class="form-group">
                                                         <label for="date">Date</label>
-                                                        <input type="date" class="form-control" placeholder="date" name="datecmdclient" id="datecmdclient" required/>
+                                                        <input type="date" class="form-control" placeholder="date" value="{{$item->datecmdclient}}" name="datecmdclient" id="datecmdclient" required/>
                                                     </div>                        
                                                 </div>
                                             </div>
@@ -297,13 +299,13 @@
                                           </div>
                                         </div>
                                     </div>
-									<td class="table-plus"></td>
-									<td></td>
-									<td></td>
-									<td></td>
-									<td></td>									
-									<td></td>									
-									<td></td>									
+									<td class="table-plus">{{$item->id}}</td>
+									<td>{{$item->client_id}}</td>
+									<td>{{$item->produit_id}}</td>
+									<td>{{$item->quantite}}</td>
+									<td>{{$item->prix}}</td>									
+									<td>{{$item->devise}}</td>									
+									<td>{{$item->datecmdclient}}</td>									
 									<td>
 										<div class="dropdown">
 											<a class="btn btn-link font-24 p-0 line-height-1 no-arrow dropdown-toggle" href="#" role="button" data-toggle="dropdown">
@@ -317,7 +319,7 @@
 										</div>
 									</td>
 								</tr>
-												
+								@endforeach					
 							</tbody>
 						</table>
 					</div>
@@ -345,6 +347,49 @@
 	<script src="{{url('assets\src\plugins\datatables\js\pdfmake.min.js')}}"></script>
 	<script src="{{url('assets\src\plugins\datatables\js\vfs_fonts.js')}}"></script>
 	<!-- Datatable Setting js -->
-	<script src="{{url('assets\vendors\scripts\datatable-setting.js')}}"></script></body>
+	<script src="{{url('assets\vendors\scripts\datatable-setting.js')}}"></script>
+		<script type="text/javascript">
+			$('#formcmdclient').submit(function(e){
+
+				e.preventDefault();
+
+				$.ajax({
+					url:'{{ route("commandeclient.store")}}',
+					method: 'POST',
+					data: new FormData(this),
+					processData:false,
+					contentType:false,
+					cache:false,
+					headers:{'X-CSRF-Token':$('meta[name="csrf-token"]').attr('content')},
+					
+					success: function(data){
+						alert('insert successfully');
+						$('#formcmdclient')[0].reset();
+					}
+				});
+			});			
+		</script>
+		<script type="text/javascript">
+			$('#editcmdclient').submit(function(e){
+
+				e.preventDefault();
+
+				$.ajax({
+					url:'{{ route("commandeclient.update")}}',
+					method: 'POST',
+					data: new FormData(this),
+					processData:false,
+					contentType:false,
+					cache:false,
+					headers:{'X-CSRF-Token':$('meta[name="csrf-token"]').attr('content')},
+					
+					success: function(data){
+						alert('insert successfully');
+						$('#editcmdclient')[0].reset();
+					}
+				});
+			});			
+		</script>
+</body>
 
 </html>

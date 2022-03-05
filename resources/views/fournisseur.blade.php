@@ -13,7 +13,7 @@
 
         <!-- Mobile Specific Metas -->
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-
+		<meta name="csrf-token" content="{{ csrf_token() }}" />
         <!-- Google Font -->
         <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
         <!-- CSS -->
@@ -22,7 +22,7 @@
         <link rel="stylesheet" type="text/css" href="{{url('assets\src\plugins\datatables\css\dataTables.bootstrap4.min.css')}}">
         <link rel="stylesheet" type="text/css" href="{{url('assets\src\plugins\datatables\css\responsive.bootstrap4.min.css')}}">
         <link rel="stylesheet" type="text/css" href="{{url('assets\vendors\styles\style.css')}}">
-
+		<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 	<script>
 		window.dataLayer = window.dataLayer || [];
 		function gtag(){dataLayer.push(arguments);}
@@ -154,6 +154,7 @@
 								</div>
 								<div class="modal-body col-md-12">						
 									<form id="formefournisseur" class="form-horizontal col-md-12" autocomplete="off">										
+									@csrf	
 										<div class="form-group">
 											<label for="nom">Nom</label>
 											<input type="text" class="form-control" placeholder="Entré le nom" name='noms' id="noms" required />
@@ -205,9 +206,9 @@
 									<th>Email</th>									
 									<th class="datatable-nosort">Action</th>
 								</tr>
-							</thead>
+							</thead> 
 							<tbody>
-							
+							@foreach ($fournisseur as $item)
 								<div id="edit" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" class="modal fade text-left">
 							<div role="document" class="modal-dialog">
 							<div class="modal-content">
@@ -216,30 +217,31 @@
 									<button type="button" data-dismiss="modal" aria-label="Close" class="close"><span aria-hidden="true">×</span></button>
 								</div>
 								<div class="modal-body col-md-12">						
-									<form id="forme_edit" method="POST" Action="editfournisseur.php" class="form-horizontal" autocomplete="off">
-										<input type="hidden" name="id" id="id" value="" class="form-control" required/>										
-									    <div class="form-group">
+									<form id="editfournisseur" method="POST" Action="editfournisseur.php" class="form-horizontal" autocomplete="off">
+									@csrf	
+										<input type="hidden" name="id" id="id" value="{{$item->id}}" class="form-control" required/>										
+									    	<div class="form-group">
 												<label for="nom">Nom</label>
-												<input type="text" class="form-control" placeholder="Entré le nom" name='noms' id="noms" required />
+												<input type="text" class="form-control" placeholder="Entré le nom" value="{{$item->noms}}" name='noms' id="noms" required />
 											</div>                                                
 											<div class="form-group">
 												<label for="sexe">Sexe</label>
-												<select  class="form-control" name='sexe' id="sexe" required >
-													<option>M</option>
+												<select  class="form-control" name='sexe' value="{{$item->sexe}}" id="sexe" required >
+													<option value="{{$item->sexe}}">{{$item->sexe}}</option>
 													<option>F</option>
 												</select>
 											</div> 
 											<div class="form-group">
 												<label for="adresse">Adresse</label>
-												<input type="text" class="form-control" placeholder="Entré l'adresse" name='adresse' id="adresse" required />
+												<input type="text" class="form-control" placeholder="Entré l'adresse" value="{{$item->adresse}}" name='adresse' id="adresse" required />
 											</div>
 											<div class="form-group">
 												<label for="telephone">Telephone</label>
-												<input type="tel" class="form-control" min="0" placeholder="+243 ... ... ..." name='telephone' id="telephone" required />
+												<input type="tel" class="form-control" min="0" placeholder="+243 ... ... ..." value="{{$item->telephone}}" name='telephone' id="telephone" required />
 											</div>                             
 											<div class="form-group">
 												<label for="adresse">Email</label>
-												<input type="email" class="form-control" placeholder="exemple@gmail.com" name='mail' id="mail" required />
+												<input type="email" class="form-control" placeholder="exemple@gmail.com" value="{{$item->mail}}" name='mail' id="mail" required />
 											</div>                                      
                                             <div class="form-group">                               
                                                 <input type="submit" class="btn btn-primary col-md-6 mt-4 ml-5" value="Modifier" />
@@ -260,12 +262,12 @@
                                           </div>
                                         </div>
                                     </div>
-									<td class="table-plus"></td>
-									<td></td>
-									<td></td>
-									<td></td>
-									<td></td>									
-									<td></td>																		
+									<td class="table-plus">{{$item->id}}</td>
+									<td>{{$item->noms}}</td>
+									<td>{{$item->sexe}}</td>
+									<td>{{$item->adresse}}</td>
+									<td>{{$item->telephone}}</td>									
+									<td>{{$item->mail}}</td>																		
 									<td>
 										<div class="dropdown">
 											<a class="btn btn-link font-24 p-0 line-height-1 no-arrow dropdown-toggle" href="#" role="button" data-toggle="dropdown">
@@ -279,7 +281,7 @@
 										</div>
 									</td>
 								</tr>
-												
+								@endforeach				
 							</tbody>
 						</table>
 					</div>
@@ -308,7 +310,7 @@
 	<script src="{{url('assets\src\plugins\datatables\js\vfs_fonts.js')}}"></script>
 	<!-- Datatable Setting js -->
 	<script src="{{url('assets\vendors\scripts\datatable-setting.js')}}"></script>
-	<script type="text/javascript">
+		<script type="text/javascript">
 			$('#formefournisseur').submit(function(e){
 
 				e.preventDefault();
@@ -325,6 +327,27 @@
 					success: function(data){
 						alert('insert successfully');
 						$('#formefournisseur')[0].reset();
+					}
+				});
+			});			
+		</script>
+		<script type="text/javascript">
+			$('#editfournisseur').submit(function(e){
+
+				e.preventDefault();
+
+				$.ajax({
+					url:'{{ route("fournisseur.update")}}',
+					method: 'POST',
+					data: new FormData(this),
+					processData:false,
+					contentType:false,
+					cache:false,
+					headers:{'X-CSRF-Token':$('meta[name="csrf-token"]').attr('content')},
+					
+					success: function(data){
+						alert('insert successfully');
+						$('#editfournisseur')[0].reset();
 					}
 				});
 			});			

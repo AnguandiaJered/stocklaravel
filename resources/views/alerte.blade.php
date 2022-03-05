@@ -13,7 +13,7 @@
 
         <!-- Mobile Specific Metas -->
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-
+		<meta name="csrf-token" content="{{ csrf_token() }}" />
         <!-- Google Font -->
         <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
         <!-- CSS -->
@@ -22,7 +22,7 @@
         <link rel="stylesheet" type="text/css" href="{{url('assets\src\plugins\datatables\css\dataTables.bootstrap4.min.css')}}">
         <link rel="stylesheet" type="text/css" href="{{url('assets\src\plugins\datatables\css\responsive.bootstrap4.min.css')}}">
         <link rel="stylesheet" type="text/css" href="{{url('assets\vendors\styles\style.css')}}">
-
+		<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 	<script>
 		window.dataLayer = window.dataLayer || [];
 		function gtag(){dataLayer.push(arguments);}
@@ -190,12 +190,12 @@
                                         <button type="button" data-dismiss="modal" aria-label="Close" class="close"><span aria-hidden="true">×</span></button>
                                     </div>
                                     <div class="modal-body col-md-12">						
-                                        <form id="forme_edit" method="POST" Action="" class="form-horizontal" autocomplete="off">
-                                            <input type="hidden" name="id" id="id" value="" class="form-control" required/>										
-                                                                
+                                        <form id="formalerte" method="POST" Action="" class="form-horizontal" autocomplete="off">
+										@csrf    
+											<input type="hidden" name="id" id="id" value="{{$item->id}}" class="form-control" required/>									             
                                             <div class="form-group">
                                                 <label for="quantite">Quantité</label>
-                                                <input type="number" class="form-control" placeholder="quantité" name="quantite" min="0" oninput="this.value = Math.abs(this.value)" value="" required/>
+                                                <input type="number" class="form-control" placeholder="quantité" value="{{$item->quantite}}" name="quantite" min="0" oninput="this.value = Math.abs(this.value)" value="" required/>
                                             </div>              
                                                             
                                             <div class="form-group">                               
@@ -261,6 +261,28 @@
 	<script src="{{url('assets\src\plugins\datatables\js\pdfmake.min.js')}}"></script>
 	<script src="{{url('assets\src\plugins\datatables\js\vfs_fonts.js')}}"></script>
 	<!-- Datatable Setting js -->
-	<script src="{{url('assets\vendors\scripts\datatable-setting.js')}}"></script></body>
+	<script src="{{url('assets\vendors\scripts\datatable-setting.js')}}"></script>
+		<script type="text/javascript">
+			$('#formalerte').submit(function(e){
+
+				e.preventDefault();
+
+				$.ajax({
+					url:'{{ route("alerte.update")}}',
+					method: 'POST',
+					data: new FormData(this),
+					processData:false,
+					contentType:false,
+					cache:false,
+					headers:{'X-CSRF-Token':$('meta[name="csrf-token"]').attr('content')},
+					
+					success: function(data){
+						alert('insert successfully');
+						$('#formalerte')[0].reset();
+					}
+				});
+			});			
+		</script>
+</body>
 
 </html>

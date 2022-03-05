@@ -22,7 +22,7 @@
         <link rel="stylesheet" type="text/css" href="{{url('assets\src\plugins\datatables\css\dataTables.bootstrap4.min.css')}}">
         <link rel="stylesheet" type="text/css" href="{{url('assets\src\plugins\datatables\css\responsive.bootstrap4.min.css')}}">
         <link rel="stylesheet" type="text/css" href="{{url('assets\vendors\styles\style.css')}}">
-		<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+		<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 	<script>
 		window.dataLayer = window.dataLayer || [];
 		function gtag(){dataLayer.push(arguments);}
@@ -217,30 +217,30 @@
 									<button type="button" data-dismiss="modal" aria-label="Close" class="close"><span aria-hidden="true">×</span></button>
 								</div>
 								<div class="modal-body col-md-12">						
-									<form id="forme_edit" method="POST" Action="editfournisseur.php" class="form-horizontal" autocomplete="off">
-										<input type="hidden" name="id" id="id" value="" class="form-control" required/>										
+									<form id="updateclient" class="form-horizontal" autocomplete="off">
+									@csrf
+										<input type="hidden" name="id" id="id" value="{{$item->id}}" class="form-control" required/>										
 											<div class="form-group">
 												<label for="nom">Nom</label>
-												<input type="text" class="form-control" placeholder="Entré le nom" name='noms' id="noms" required />
+												<input type="text" class="form-control" placeholder="Entré le nom" value="{{$item->noms}}" name='noms' id="noms" required />
 											</div>                                                
 											<div class="form-group">
 												<label for="sexe">Sexe</label>
-												<select  class="form-control" name='sexe' id="sexe" required >
-													<option>M</option>
-													<option>F</option>
+												<select  class="form-control" name='sexe' id="sexe" value="{{$item->sexe}}" required >
+													<option value="{{$item->sexe}}">{{$item->sexe}}</option>													
 												</select>
 											</div> 
 											<div class="form-group">
 												<label for="adresse">Adresse</label>
-												<input type="text" class="form-control" placeholder="Entré l'adresse" name='adresse' id="adresse" required />
+												<input type="text" class="form-control" placeholder="Entré l'adresse" value="{{$item->adresse}}" name='adresse' id="adresse" required />
 											</div>
 											<div class="form-group">
 												<label for="telephone">Telephone</label>
-												<input type="tel" class="form-control" min="0" placeholder="+243 ... ... ..." name='telephone' id="telephone" required />
+												<input type="tel" class="form-control" min="0" placeholder="+243 ... ... ..." name='telephone' value="{{$item->telephone}}" id="telephone" required />
 											</div>                             
 											<div class="form-group">
 												<label for="adresse">Email</label>
-												<input type="email" class="form-control" placeholder="exemple@gmail.com" name='mail' id="mail" required />
+												<input type="email" class="form-control" placeholder="exemple@gmail.com" value="{{$item->mail}}" name='mail' id="mail" required />
 											</div>                         
                                             <div class="form-group">                               
                                                 <input type="submit" class="btn btn-primary col-md-6 mt-4 ml-5" value="Modifier" />
@@ -326,6 +326,27 @@
 					success: function(data){
 						alert('insert successfully');
 						$('#formeclient')[0].reset();
+					}
+				});
+			});			
+		</script>
+				<script type="text/javascript">
+			$('#updateclient').submit(function(e){
+
+				e.preventDefault();
+
+				$.ajax({
+					url:'{{ route("client.update")}}',
+					method: 'POST',
+					data: new FormData(this),
+					processData:false,
+					contentType:false,
+					cache:false,
+					headers:{'X-CSRF-Token':$('meta[name="csrf-token"]').attr('content')},
+					
+					success: function(data){
+						alert('insert successfully');
+						$('#updateclient')[0].reset();
 					}
 				});
 			});			

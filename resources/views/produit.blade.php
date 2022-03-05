@@ -13,7 +13,7 @@
 
         <!-- Mobile Specific Metas -->
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-
+		<meta name="csrf-token" content="{{ csrf_token() }}" />
         <!-- Google Font -->
         <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
         <!-- CSS -->
@@ -22,7 +22,7 @@
         <link rel="stylesheet" type="text/css" href="{{url('assets\src\plugins\datatables\css\dataTables.bootstrap4.min.css')}}">
         <link rel="stylesheet" type="text/css" href="{{url('assets\src\plugins\datatables\css\responsive.bootstrap4.min.css')}}">
         <link rel="stylesheet" type="text/css" href="{{url('assets\vendors\styles\style.css')}}">
-
+		<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 	<script>
 		window.dataLayer = window.dataLayer || [];
 		function gtag(){dataLayer.push(arguments);}
@@ -153,7 +153,8 @@
 									<button type="button" data-dismiss="modal" aria-label="Close" class="close"><span aria-hidden="true">×</span></button>
 								</div>
 									<div class="modal-body col-md-12">						
-										<form id="forme" method="POST" Action="" class="form-horizontal col-md-12" autocomplete="off">										
+										<form id="forme" class="form-horizontal col-md-12" autocomplete="off">										
+										@csrf
 											<div class="form-group">
 												<label for="designation">Designation</label>
 												<input type="text" class="form-control" placeholder="designation" id="designation" name="designation" value="" required/>
@@ -181,25 +182,26 @@
 						</div>
 					</div>
 				</div>
-                <div id="myModalcate" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" class="modal fade text-left">
+                		<div id="myModalcate" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" class="modal fade text-left">
 							<div role="document" class="modal-dialog">
-							<div class="modal-content">
-								<div class="modal-header">
-									<h5 id="exampleModalLabel" class="modal-title">Add categorie</h5>
-									<button type="button" data-dismiss="modal" aria-label="Close" class="close"><span aria-hidden="true">×</span></button>
-								</div>
-								<div class="modal-body col-md-12">						
-									<form id="forme" method="POST" Action="" class="form-horizontal col-md-12" autocomplete="off">									
-                                            <div class=" mt-3">
-                                                <div class="form-group">
-                                                    <label for="designation">Designation</label>
-                                                    <input type="text" class="form-control" placeholder="designation" name='designation' id="designation" required />
-                                                </div>                                                                                            
-                                            </div>                                                               
-                                            <div class="form-group">                               
-                                                <input type="submit" class="btn btn-primary col-md-6 mt-4 ml-5" value="Enregistrer" />
-                                            </div>																							
-									</form>
+								<div class="modal-content">
+									<div class="modal-header">
+										<h5 id="exampleModalLabel" class="modal-title">Add categorie</h5>
+										<button type="button" data-dismiss="modal" aria-label="Close" class="close"><span aria-hidden="true">×</span></button>
+									</div>
+									<div class="modal-body col-md-12">						
+										<form id="formecategorie" class="form-horizontal col-md-12" autocomplete="off">									
+										@csrf 
+											<div class=" mt-3">
+												<div class="form-group">
+													<label for="designation">Designation</label>
+													<input type="text" class="form-control" placeholder="designation" name='designation' id="designation" required />
+												</div>                                                                                            
+											</div>                                                               
+											<div class="form-group">                               
+												<input type="submit" class="btn btn-primary col-md-6 mt-4 ml-5" value="Enregistrer" />
+											</div>																							
+										</form>
 									</div>
 								</div>								                        
 							</div>							
@@ -222,7 +224,7 @@
 								</tr>
 							</thead>
 							<tbody>
-							
+							@foreach ($produit as $item)
 								<div id="edit" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" class="modal fade text-left">
 							<div role="document" class="modal-dialog">
 							<div class="modal-content">
@@ -231,21 +233,22 @@
 									<button type="button" data-dismiss="modal" aria-label="Close" class="close"><span aria-hidden="true">×</span></button>
 								</div>
 									<div class="modal-body col-md-12">						
-										<form id="forme_edit" method="POST" Action="" class="form-horizontal" autocomplete="off">
-											<input type="hidden" name="id" id="id" value="" class="form-control" required/>										
+										<form id="forme_edit" class="form-horizontal" autocomplete="off">
+										@csrf 
+											<input type="hidden" name="id" id="id" value="{{$item->id}}" class="form-control" required/>										
 											<div class="form-group">
 												<label for="designation">Designation</label>
-												<input type="text" class="form-control" placeholder="designation" id="designation" name="designation" value="" required/>
+												<input type="text" class="form-control" placeholder="designation" value="{{$item->designation}}" id="designation" name="designation" value="" required/>
 											</div>                         
 											<div class="form-group">
 												<label for="quantite">Quantité</label>
-												<input type="number" class="form-control" placeholder="quantité" id="quantite" name="quantite" min="0" oninput="this.value = Math.abs(this.value)" value="" required/>
+												<input type="number" class="form-control" placeholder="quantité" value="{{$item->quantite}}" id="quantite" name="quantite" min="0" oninput="this.value = Math.abs(this.value)" value="" required/>
 											</div>               
 											<div class="form-group">
 												<label for="categorie">Categorie</label>
-												<select class="form-control" name="category_id" id="category_id">
+												<select class="form-control" name="category_id" id="category_id" value="{{$item->category_id}}">
 													<optgroup >																						
-														<option value=""></option>                                                           														
+														<option value="{{$item->category_id}}">{{$item->category_id}}</option>                                                           														
 													</optgroup>	
 												</select>
 											</div>              								
@@ -269,10 +272,10 @@
                                           </div>
                                         </div>
                                     </div>
-									<td class="table-plus"></td>
-									<td></td>
-									<td></td>
-									<td></td>																		
+									<td class="table-plus">{{$item->id}}</td>
+									<td>{{$item->designation}}</td>
+									<td>{{$item->quantite}}</td>
+									<td>{{$item->category_id}}</td>																		
 									<td>
 										<div class="dropdown">
 											<a class="btn btn-link font-24 p-0 line-height-1 no-arrow dropdown-toggle" href="#" role="button" data-toggle="dropdown">
@@ -285,7 +288,7 @@
 										</div>
 									</td>
 								</tr>
-												
+								@endforeach				
 							</tbody>
 						</table>
 					</div>
@@ -313,6 +316,49 @@
 	<script src="{{url('assets\src\plugins\datatables\js\pdfmake.min.js')}}"></script>
 	<script src="{{url('assets\src\plugins\datatables\js\vfs_fonts.js')}}"></script>
 	<!-- Datatable Setting js -->
-	<script src="{{url('assets\vendors\scripts\datatable-setting.js')}}"></script></body>
+	<script src="{{url('assets\vendors\scripts\datatable-setting.js')}}"></script>
+		<script type="text/javascript">
+			$('#formproduit').submit(function(e){
+
+				e.preventDefault();
+
+				$.ajax({
+					url:'{{ route("produit.store")}}',
+					method: 'POST',
+					data: new FormData(this),
+					processData:false,
+					contentType:false,
+					cache:false,
+					headers:{'X-CSRF-Token':$('meta[name="csrf-token"]').attr('content')},
+					
+					success: function(data){
+						alert('insert successfully');
+						$('#formproduit')[0].reset();
+					}
+				});
+			});			
+		</script>
+		<script type="text/javascript">
+			$('#formecategorie').submit(function(e){
+
+				e.preventDefault();
+
+				$.ajax({
+					url:'{{ route("category.store")}}',
+					method: 'POST',
+					data: new FormData(this),
+					processData:false,
+					contentType:false,
+					cache:false,
+					headers:{'X-CSRF-Token':$('meta[name="csrf-token"]').attr('content')},
+					
+					success: function(data){
+						alert('insert successfully');
+						$('#formecategorie')[0].reset();
+					}
+				});
+			});			
+		</script>
+</body>
 
 </html>
