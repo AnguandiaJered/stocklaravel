@@ -13,7 +13,8 @@
 
         <!-- Mobile Specific Metas -->
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-		<meta name="csrf-token" content="{{ csrf_token() }}" />
+		<!-- <meta name="csrf-token" content="{{ csrf_token() }}" /> -->
+		<meta name="csrf-token" content="{{ csrf_token() }}">
         <!-- Google Font -->
         <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
         <!-- CSS -->
@@ -212,7 +213,7 @@
 								</div>
 								<div class="modal-body col-md-12">			
 																		
-                                    <form id="forme" method="POST" Action="" class="form-horizontal col-md-12" autocomplete="off">										
+                                    <form method="POST" action="{{ route('users.update')}}" class="form-horizontal col-md-12" autocomplete="off">										
                                         <input type="hidden" name="id" id="id" value="{{$item->id}}" class="form-control" required/>										    
                                         <div class="form-group">
                                             <label for="name">Username</label>
@@ -227,7 +228,7 @@
                                             <input type="password" class="form-control" placeholder="Password" value="{{$item->password}}" name='password' id="password" required />
                                         </div>                          
                                         <div class="form-group">                               
-                                            <input type="submit" class="btn btn-primary col-md-6 mt-4 ml-5" value="Enregistrer" />
+                                            <input type="submit" class="btn btn-primary col-md-6 mt-4 ml-5" value="Modifier" />
                                         </div> 																								
 									</form>
 									</div>

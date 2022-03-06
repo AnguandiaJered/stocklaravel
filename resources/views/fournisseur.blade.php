@@ -217,7 +217,7 @@
 									<button type="button" data-dismiss="modal" aria-label="Close" class="close"><span aria-hidden="true">×</span></button>
 								</div>
 								<div class="modal-body col-md-12">						
-									<form id="editfournisseur" method="POST" Action="editfournisseur.php" class="form-horizontal" autocomplete="off">
+									<form method="POST" Action="{{ route('fournisseur.update')}}" class="form-horizontal" autocomplete="off">
 									@csrf	
 										<input type="hidden" name="id" id="id" value="{{$item->id}}" class="form-control" required/>										
 									    	<div class="form-group">
@@ -330,27 +330,7 @@
 				});
 			});			
 		</script>
-		<script type="text/javascript">
-			$('#editfournisseur').submit(function(e){
-
-				e.preventDefault();
-
-				$.ajax({
-					url:'{{ route("fournisseur.update")}}',
-					method: 'POST',
-					data: new FormData(this),
-					processData:false,
-					contentType:false,
-					cache:false,
-					headers:{'X-CSRF-Token':$('meta[name="csrf-token"]').attr('content')},
-					
-					success: function(data){
-						alert('insert successfully');
-						$('#editfournisseur')[0].reset();
-					}
-				});
-			});			
-		</script>
+		
 </body>
 
 </html>

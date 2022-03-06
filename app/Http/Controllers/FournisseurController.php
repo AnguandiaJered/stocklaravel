@@ -86,7 +86,7 @@ class FournisseurController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
         \DB::update("UPDATE fournisseur set noms = ?, sexe = ?, adresse = ?, telephone = ?, mail = ? WHERE id= ? ", [$request->noms,$request->sexe,$request->adresse,$request->telephone,$request->mail,$request->id]);
         return \redirect()->route('fournisseur')->with('message','modification reussi avec succes');

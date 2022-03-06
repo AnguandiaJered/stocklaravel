@@ -237,7 +237,7 @@
 									<button type="button" data-dismiss="modal" aria-label="Close" class="close"><span aria-hidden="true">×</span></button>
 								</div>
 									<div class="modal-body col-md-12">						
-										<form id="editapprovision" method="POST" Action="" class="form-horizontal col-md-12" autocomplete="off">
+										<form method="POST" action="{{ route('approvision.update')}}" class="form-horizontal col-md-12" autocomplete="off">
 											@csrf         
 											<div class="row">
                                                     <div class="col-md-6  mt-3 text-left">                           
@@ -369,28 +369,7 @@
 					}
 				});
 			});			
-		</script>
-				<script type="text/javascript">
-			$('#editapprovision').submit(function(e){
-
-				e.preventDefault();
-
-				$.ajax({
-					url:'{{ route("approvision.update")}}',
-					method: 'POST',
-					data: new FormData(this),
-					processData:false,
-					contentType:false,
-					cache:false,
-					headers:{'X-CSRF-Token':$('meta[name="csrf-token"]').attr('content')},
-					
-					success: function(data){
-						alert('insert successfully');
-						$('#editapprovision')[0].reset();
-					}
-				});
-			});			
-		</script>
+		</script>		
 </body>
 
 </html>

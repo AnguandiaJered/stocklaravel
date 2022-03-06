@@ -217,7 +217,7 @@
 									<button type="button" data-dismiss="modal" aria-label="Close" class="close"><span aria-hidden="true">×</span></button>
 								</div>
 								<div class="modal-body col-md-12">						
-									<form id="updateclient" class="form-horizontal" autocomplete="off">
+									<form method="POST" action="{{ route('client.update')}}" class="form-horizontal" autocomplete="off">
 									@csrf
 										<input type="hidden" name="id" id="id" value="{{$item->id}}" class="form-control" required/>										
 											<div class="form-group">
@@ -329,26 +329,6 @@
 				});
 			});			
 		</script>
-				<script type="text/javascript">
-			$('#updateclient').submit(function(e){
-
-				e.preventDefault();
-
-				$.ajax({
-					url:'{{ route("client.update")}}',
-					method: 'POST',
-					data: new FormData(this),
-					processData:false,
-					contentType:false,
-					cache:false,
-					headers:{'X-CSRF-Token':$('meta[name="csrf-token"]').attr('content')},
-					
-					success: function(data){
-						alert('insert successfully');
-						$('#updateclient')[0].reset();
-					}
-				});
-			});			
-		</script>
+		
 	</body>
 </html>

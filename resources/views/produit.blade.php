@@ -233,7 +233,7 @@
 									<button type="button" data-dismiss="modal" aria-label="Close" class="close"><span aria-hidden="true">×</span></button>
 								</div>
 									<div class="modal-body col-md-12">						
-										<form id="forme_edit" class="form-horizontal" autocomplete="off">
+										<form method="POST" action="{{route('produit.update')}}" class="form-horizontal" autocomplete="off">
 										@csrf 
 											<input type="hidden" name="id" id="id" value="{{$item->id}}" class="form-control" required/>										
 											<div class="form-group">

@@ -86,9 +86,9 @@ class ClientController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
-        \DB::update("UPDATE client set noms = ?, sexe = ?, adresse = ?, telephone = ?, mail = ? WHERE id= ? ", [$request->noms,$request->sexe,$request->adresse,$request->telephone,$request->mail,$request->id]);
+       $data = \DB::update("UPDATE client set noms = ?, sexe = ?, adresse = ?, telephone = ?, mail = ? WHERE id= ? ", [$request->noms,$request->sexe,$request->adresse,$request->telephone,$request->mail,$request->id]);
         return \redirect()->route('client')->with('message','modification reussi avec succes');
     }
 

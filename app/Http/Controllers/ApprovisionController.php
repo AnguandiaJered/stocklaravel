@@ -88,7 +88,7 @@ class ApprovisionController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
         \DB::update("UPDATE approvision set produit_id = ?, fournisseur_id = ?, quantite = ?, prix = ?, devise = ?, dateprovision = ? WHERE id= ? ", [$request->produit_id,$request->fournisseur_id,$request->quantite,$request->prix,$request->devise,$request->dateprovision,$request->id]);
         return \redirect()->route('approvision')->with('message','modification reussi avec succes');

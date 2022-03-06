@@ -236,7 +236,7 @@
 									<button type="button" data-dismiss="modal" aria-label="Close" class="close"><span aria-hidden="true">×</span></button>
 								</div>
 									<div class="modal-body col-md-12">						
-										<form id="editcmdcompany" class="form-horizontal col-md-12" autocomplete="off">				            
+										<form method="POST" action="{{ route('commandecompany.update')}}" class="form-horizontal col-md-12" autocomplete="off">				            
 										@csrf 
 											<div class="row">
                                                 <div class="col-md-6  mt-3 text-left">
@@ -368,27 +368,7 @@
 				});
 			});			
 		</script>
-		<script type="text/javascript">
-			$('#editcmdcompany').submit(function(e){
-
-				e.preventDefault();
-
-				$.ajax({
-					url:'{{ route("commandecompany.update")}}',
-					method: 'POST',
-					data: new FormData(this),
-					processData:false,
-					contentType:false,
-					cache:false,
-					headers:{'X-CSRF-Token':$('meta[name="csrf-token"]').attr('content')},
-					
-					success: function(data){
-						alert('insert successfully');
-						$('#editcmdcompany')[0].reset();
-					}
-				});
-			});			
-		</script>
+	
 </body>
 
 </html>

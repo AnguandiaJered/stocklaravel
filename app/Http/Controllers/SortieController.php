@@ -88,7 +88,7 @@ class SortieController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
         \DB::update("UPDATE sortie set client_id = ?, produit_id = ?, quantite = ?, prix = ?, devise = ?, dateprovision = ? WHERE id= ? ", [$request->client_id,$request->produit_id,$request->quantite,$request->prix,$request->devise,$request->dateprovision,$request->id]);
         return \redirect()->route('sortie')->with('message','modification reussi avec succes');

@@ -82,7 +82,7 @@ class ProduitController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
         \DB::update("UPDATE produit set designation = ?, quantite = ?, category_id = ? WHERE id= ? ", [$request->designation,$request->quantite,$request->category_id,$request->id]);
         return \redirect()->route('produit')->with('message','modification reussi avec succes');

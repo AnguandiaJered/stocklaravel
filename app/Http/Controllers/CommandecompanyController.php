@@ -88,7 +88,7 @@ class CommandecompanyController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
         \DB::update("UPDATE commandecompany set fournisseur_id = ?, produit_id = ?, quantite = ?, prix = ?, devise = ?, datecmd = ? WHERE id= ? ", [$request->fournisseur_id,$request->produit_id,$request->quantite,$request->prix,$request->devise,$request->datecmd,$request->id]);
         return \redirect()->route('commandecompany')->with('message','modification reussi avec succes');

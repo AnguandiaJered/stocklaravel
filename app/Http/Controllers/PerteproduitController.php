@@ -84,7 +84,7 @@ class PerteproduitController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
         \DB::update("UPDATE perteproduit set produit_id = ?, quantite = ?, dateperte = ?, typegaspillage = ? WHERE id= ? ", [$request->produit_id,$request->quantite,$request->dateperte,$request->typegaspillage,$request->id]);
         return \redirect()->route('perteproduit')->with('message','modification reussi avec succes');
