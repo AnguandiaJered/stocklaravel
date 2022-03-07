@@ -44,7 +44,7 @@ class CategorieController extends Controller
             'designation'=>$request->designation
         ]);
 
-        return \redirect()->route('category')->with('message','Inserer avec success');
+        return \redirect()->route('produit.index')->with('message','Inserer avec success');
     }
 
     /**

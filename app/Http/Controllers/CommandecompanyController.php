@@ -54,7 +54,7 @@ class CommandecompanyController extends Controller
             'datecmd'=>$request->datecmd,
         ]);
 
-        return \redirect()->route('commandecompany')->with('message','Inserer avec success');
+        return \redirect()->route('commandecompany.index')->with('message','Inserer avec success');
     }
 
     /**
@@ -91,7 +91,7 @@ class CommandecompanyController extends Controller
     public function update(Request $request)
     {
         \DB::update("UPDATE commandecompany set fournisseur_id = ?, produit_id = ?, quantite = ?, prix = ?, devise = ?, datecmd = ? WHERE id= ? ", [$request->fournisseur_id,$request->produit_id,$request->quantite,$request->prix,$request->devise,$request->datecmd,$request->id]);
-        return \redirect()->route('commandecompany')->with('message','modification reussi avec succes');
+        return \redirect()->route('commandecompany.index')->with('message','modification reussi avec succes');
     }
 
     /**
@@ -103,6 +103,6 @@ class CommandecompanyController extends Controller
     public function destroy($id)
     {      
         \DB::delete("DELETE FROM commandecompany WHERE id= ?", [$id]);
-        return \redirect()->route('commandecompany')->with('message','suppression reussi avec succes');
+        return \redirect()->route('commandecompany.index')->with('message','suppression reussi avec succes');
     }
 }

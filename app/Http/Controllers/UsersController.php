@@ -47,7 +47,7 @@ class UsersController extends Controller
             'password'=>$request->password,
         ]);
 
-        return \redirect()->route('users')->with('message','Inserer avec success');
+        return \redirect()->route('users.index')->with('message','Inserer avec success');
     }
 
     /**
@@ -84,8 +84,7 @@ class UsersController extends Controller
     public function update(Request $request)
     {       
        $data = \DB::update("UPDATE users set name = ?, email = ?, password = ? WHERE id= ? ", [$request->name,$request->email,$request->password,$request->id]);
-        //return \redirect()->route('users')->with('message','modification reussi avec succes');
-        return response()->json($data);
+        return \redirect()->route('users.index')->with('message','modification reussi avec succes');
     }
 
     /**
@@ -97,6 +96,6 @@ class UsersController extends Controller
     public function destroy($id)
     {
         \DB::delete("DELETE FROM users WHERE id= ?", [$id]);
-        return \redirect()->route('users')->with('message','suppression reussi avec succes');
+        return \redirect()->route('users.index')->with('message','suppression reussi avec succes');
     }
 }

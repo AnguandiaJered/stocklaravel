@@ -54,7 +54,7 @@ class ApprovisionController extends Controller
             'dateprovision'=>$request->dateprovision,
         ]);
 
-        return \redirect()->route('approvision')->with('message','Inserer avec success');
+        return \redirect()->route('approvision.index')->with('message','Inserer avec success');
     }
 
     /**
@@ -91,7 +91,7 @@ class ApprovisionController extends Controller
     public function update(Request $request)
     {
         \DB::update("UPDATE approvision set produit_id = ?, fournisseur_id = ?, quantite = ?, prix = ?, devise = ?, dateprovision = ? WHERE id= ? ", [$request->produit_id,$request->fournisseur_id,$request->quantite,$request->prix,$request->devise,$request->dateprovision,$request->id]);
-        return \redirect()->route('approvision')->with('message','modification reussi avec succes');
+        return \redirect()->route('approvision.index')->with('message','modification reussi avec succes');
     }
 
     /**
@@ -103,6 +103,6 @@ class ApprovisionController extends Controller
     public function destroy($id)
     {
         \DB::delete("DELETE FROM approvision WHERE id= ?", [$id]);
-        return \redirect()->route('approvision')->with('message','suppression reussi avec succes');
+        return \redirect()->route('approvision.index')->with('message','suppression reussi avec succes');
     }
 }

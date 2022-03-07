@@ -50,7 +50,7 @@ class PerteproduitController extends Controller
             'typegaspillage'=>$request->typegaspillage,
         ]);
 
-        return \redirect()->route('perteproduit')->with('message','Inserer avec success');
+        return \redirect()->route('perteproduit.index')->with('message','Inserer avec success');
     }
 
     /**
@@ -87,7 +87,7 @@ class PerteproduitController extends Controller
     public function update(Request $request)
     {
         \DB::update("UPDATE perteproduit set produit_id = ?, quantite = ?, dateperte = ?, typegaspillage = ? WHERE id= ? ", [$request->produit_id,$request->quantite,$request->dateperte,$request->typegaspillage,$request->id]);
-        return \redirect()->route('perteproduit')->with('message','modification reussi avec succes');
+        return \redirect()->route('perteproduit.index')->with('message','modification reussi avec succes');
     }
 
     /**
@@ -99,6 +99,6 @@ class PerteproduitController extends Controller
     public function destroy($id)
     {
         \DB::delete("DELETE FROM perteproduit WHERE id= ?", [$id]);
-        return \redirect()->route('perteproduit')->with('message','suppression reussi avec succes');
+        return \redirect()->route('perteproduit.index')->with('message','suppression reussi avec succes');
     }
 }

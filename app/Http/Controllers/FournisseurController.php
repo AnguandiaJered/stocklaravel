@@ -52,7 +52,7 @@ class FournisseurController extends Controller
             'mail'=>$request->mail
         ]);
 
-        return \redirect()->route('fournisseur')->with('message','Inserer avec success');
+        return \redirect()->route('fournisseur.index')->with('message','Inserer avec success');
     }
 
     /**
@@ -89,7 +89,7 @@ class FournisseurController extends Controller
     public function update(Request $request)
     {
         \DB::update("UPDATE fournisseur set noms = ?, sexe = ?, adresse = ?, telephone = ?, mail = ? WHERE id= ? ", [$request->noms,$request->sexe,$request->adresse,$request->telephone,$request->mail,$request->id]);
-        return \redirect()->route('fournisseur')->with('message','modification reussi avec succes');
+        return \redirect()->route('fournisseur.index')->with('message','modification reussi avec succes');
     }
 
     /**
@@ -101,6 +101,6 @@ class FournisseurController extends Controller
     public function destroy($id)
     {
         \DB::delete("DELETE FROM fournisseur WHERE id= ?", [$id]);
-        return \redirect()->route('fournisseur')->with('message','suppression reussi avec succes');
+        return \redirect()->route('fournisseur.index')->with('message','suppression reussi avec succes');
     }
 }

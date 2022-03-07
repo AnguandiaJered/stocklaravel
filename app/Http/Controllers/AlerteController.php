@@ -73,7 +73,7 @@ class AlerteController extends Controller
     public function update(Request $request)
     {
         \DB::update("UPDATE alerte set quantite = ? WHERE id= ?",[ $request->quantite ,$request->id]);
-        return \redirect()->route('alerte')->with('message','modification reussi avec succes');
+        return \redirect()->route('alerte.index')->with('message','modification reussi avec succes');
     }
 
     /**

@@ -48,7 +48,7 @@ class ProduitController extends Controller
             'category_id'=>$request->category_id,
         ]);
 
-        return \redirect()->route('produit')->with('message','Inserer avec success');
+        return \redirect()->route('produit.index')->with('message','Inserer avec success');
     }
 
     /**
@@ -85,7 +85,7 @@ class ProduitController extends Controller
     public function update(Request $request)
     {
         \DB::update("UPDATE produit set designation = ?, quantite = ?, category_id = ? WHERE id= ? ", [$request->designation,$request->quantite,$request->category_id,$request->id]);
-        return \redirect()->route('produit')->with('message','modification reussi avec succes');
+        return \redirect()->route('produit.index')->with('message','modification reussi avec succes');
     }
 
     /**
@@ -97,6 +97,6 @@ class ProduitController extends Controller
     public function destroy($id)
     {
         \DB::delete("DELETE FROM produit WHERE id= ?", [$id]);
-        return \redirect()->route('produit')->with('message','suppression reussi avec succes');
+        return \redirect()->route('produit.index')->with('message','suppression reussi avec succes');
     }
 }

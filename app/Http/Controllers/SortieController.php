@@ -54,7 +54,7 @@ class SortieController extends Controller
             'dateprovision'=>$request->dateprovision,
         ]);
 
-        return \redirect()->route('sortie')->with('message','Inserer avec success');
+        return \redirect()->route('sortie.index')->with('message','Inserer avec success');
     }
 
     /**
@@ -91,7 +91,7 @@ class SortieController extends Controller
     public function update(Request $request)
     {
         \DB::update("UPDATE sortie set client_id = ?, produit_id = ?, quantite = ?, prix = ?, devise = ?, dateprovision = ? WHERE id= ? ", [$request->client_id,$request->produit_id,$request->quantite,$request->prix,$request->devise,$request->dateprovision,$request->id]);
-        return \redirect()->route('sortie')->with('message','modification reussi avec succes');
+        return \redirect()->route('sortie.index')->with('message','modification reussi avec succes');
     }
 
     /**
@@ -103,6 +103,6 @@ class SortieController extends Controller
     public function destroy($id)
     {
         \DB::delete("DELETE FROM sortie WHERE id= ?", [$id]);
-        return \redirect()->route('sortie')->with('message','suppression reussi avec succes');
+        return \redirect()->route('sortie.index')->with('message','suppression reussi avec succes');
     }
 }

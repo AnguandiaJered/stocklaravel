@@ -54,7 +54,7 @@ class CommandeclientController extends Controller
             'datecmdclient'=>$request->datecmdclient,
         ]);
 
-        return \redirect()->route('commandeclient')->with('message','Inserer avec success');
+        return \redirect()->route('commandeclient.index')->with('message','Inserer avec success');
     }
 
     /**
@@ -91,7 +91,7 @@ class CommandeclientController extends Controller
     public function update(Request $request)
     {
         \DB::update("UPDATE commandeclient set client_id = ?, produit_id = ?, quantite = ?, prix = ?, devise = ?, datecmdclient = ? WHERE id= ? ", [$request->client_id,$request->produit_id,$request->quantite,$request->prix,$request->devise,$request->datecmdclient,$request->id]);
-        return \redirect()->route('commandeclient')->with('message','modification reussi avec succes');
+        return \redirect()->route('commandeclient.index')->with('message','modification reussi avec succes');
     }
 
     /**
@@ -103,6 +103,6 @@ class CommandeclientController extends Controller
     public function destroy($id)
     {
         \DB::delete("DELETE FROM commandeclient WHERE id= ?", [$id]);
-        return \redirect()->route('commandeclient')->with('message','suppression reussi avec succes');
+        return \redirect()->route('commandeclient.index')->with('message','suppression reussi avec succes');
     }
 }

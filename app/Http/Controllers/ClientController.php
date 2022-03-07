@@ -52,7 +52,7 @@ class ClientController extends Controller
             'mail'=>$request->mail
         ]);
         
-        return \redirect()->route('client')->with('message','Inserer avec success');
+        return \redirect()->route('client.index')->with('message','Inserer avec success');
     }
 
     /**
@@ -89,7 +89,7 @@ class ClientController extends Controller
     public function update(Request $request)
     {
        $data = \DB::update("UPDATE client set noms = ?, sexe = ?, adresse = ?, telephone = ?, mail = ? WHERE id= ? ", [$request->noms,$request->sexe,$request->adresse,$request->telephone,$request->mail,$request->id]);
-        return \redirect()->route('client')->with('message','modification reussi avec succes');
+        return \redirect()->route('client.index')->with('message','modification reussi avec succes');
     }
 
     /**
@@ -101,6 +101,6 @@ class ClientController extends Controller
     public function destroy($id)
     {
         \DB::delete("DELETE FROM client WHERE id= ?", [$id]);
-        return \redirect()->route('client')->with('message','suppression reussi avec succes');
+        return \redirect()->route('client.index')->with('message','suppression reussi avec succes');
     }
 }
