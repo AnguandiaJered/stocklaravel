@@ -153,7 +153,7 @@
 									<button type="button" data-dismiss="modal" aria-label="Close" class="close"><span aria-hidden="true">×</span></button>
 								</div>
 									<div class="modal-body col-md-12">						
-										<form id="forme" class="form-horizontal col-md-12" autocomplete="off">										
+										<form id="formproduit" class="form-horizontal col-md-12" autocomplete="off">										
 										@csrf
 											<div class="form-group">
 												<label for="designation">Designation</label>
@@ -167,7 +167,9 @@
 												<label for="categorie">Categorie</label>
 												<select class="form-control" name="category_id" id="category_id">
 													<optgroup >																						
-														<option value=""></option>                                                           														
+													@foreach ($categ as $item)																				
+														<option value="{{$item->id}}">{{$item->designation}}</option>
+													@endforeach	                                                          														
 													</optgroup>	
 												</select>
 											</div>                 
@@ -332,7 +334,7 @@
 					headers:{'X-CSRF-Token':$('meta[name="csrf-token"]').attr('content')},
 					
 					success: function(data){
-						alert('insert successfully');
+						// alert('insert successfully');
 						$('#formproduit')[0].reset();
 					}
 				});
@@ -353,7 +355,7 @@
 					headers:{'X-CSRF-Token':$('meta[name="csrf-token"]').attr('content')},
 					
 					success: function(data){
-						alert('insert successfully');
+						// alert('insert successfully');
 						$('#formecategorie')[0].reset();
 					}
 				});

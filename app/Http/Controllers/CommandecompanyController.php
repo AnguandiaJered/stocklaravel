@@ -15,7 +15,9 @@ class CommandecompanyController extends Controller
     public function index()
     {
         $commandecompany = \DB::select("SELECT * FROM commandecompany order by id DESC");
-        return view('commandecompany', compact('commandecompany'));
+        $produit = \DB::select("SELECT * FROM produit order by id DESC");
+        $fournisseur = \DB::select("SELECT * FROM fournisseur order by id DESC");
+        return view('commandecompany', compact('commandecompany','produit','fournisseur'));
     }
 
     /**

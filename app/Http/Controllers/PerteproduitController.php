@@ -15,7 +15,8 @@ class PerteproduitController extends Controller
     public function index()
     {
         $perteproduit = \DB::select("SELECT * FROM perteproduit order by id DESC");
-        return view('perteproduit', compact('perteproduit'));
+        $produit = \DB::select("SELECT * FROM produit order by id DESC");
+        return view('perteproduit', compact('perteproduit','produit'));
     }
 
     /**

@@ -161,16 +161,19 @@
                                                         <label for="client">Clients</label>
                                                         <select class="form-control" name="client_id" id="client_id" >
                                                             <optgroup >																				
-                                                                <option value=""></option>													
+                                                        	@foreach ($client as $item)																				
+																<option value="{{$item->id}}">{{$item->noms}}</option>
+															@endforeach														
                                                             </optgroup>	
                                                         </select>
                                                     </div>
                                                     <div class="form-group">
                                                         <label for="produit">Produit</label>
-                                                        <select  
-                                                            class="form-control" name="produit_id" id="produit_id" >
+                                                        <select class="form-control" name="produit_id" id="produit_id" >
                                                             <optgroup >																								
-                                                                <option value=""></option>														
+															@foreach ($produit as $item)																				
+																<option value="{{$item->id}}">{{$item->designation}}</option>
+															@endforeach													
                                                             </optgroup>
                                                         </select>
                                                     </div>                         

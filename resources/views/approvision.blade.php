@@ -152,26 +152,27 @@
                                             <button type="button" data-dismiss="modal" aria-label="Close" class="close"><span aria-hidden="true">×</span></button>
                                         </div>
                                         <div class="modal-body col-md-12">						
-                                            <form id="formapprovision" method="POST" Action="" class="form-horizontal col-md-12" autocomplete="off">
+                                            <form id="formapprovision" class="form-horizontal col-md-12" autocomplete="off">
                                             @csrf     
 												<div class="row">
                                                     <div class="col-md-6  mt-3 text-left">                           
                                                     
                                                         <div class="form-group">
                                                             <label for="produit">Produit</label>
-                                                            <select  
-                                                                class="form-control" name="produit_id" id="produit_id" >
-                                                                <optgroup >																					
-                                                                    <option value=""></option>											
+                                                            <select class="form-control" name="produit_id" id="produit_id" >
+                                                                <optgroup >	
+																@foreach ($produit as $item)																				
+																<option value="{{$item->id}}">{{$item->designation}}</option>
+																@endforeach												
                                                                 </optgroup>
                                                             </select>
                                                         </div> 
                                                         <div class="form-group">
                                                             <label for="fournisseur">Fournisseur</label>
                                                             <select class="form-control" name="fournisseur_id" id="fournisseur_id" >
-                                                                <optgroup >																							
-                                                                    <option value=""></option>													
-                                                                </optgroup>	
+															@foreach ($fournisseur as $item)																				
+																<option value="{{$item->id}}">{{$item->noms}}</option>
+															@endforeach	
                                                             </select>
                                                         </div>                        
                                                         <div class="form-group">

@@ -15,7 +15,8 @@ class ProduitController extends Controller
     public function index()
     {
         $produit = \DB::select("SELECT * FROM produit order by id DESC");
-        return view('produit', compact('produit'));
+        $categ = \DB::select("SELECT * FROM category order by id DESC");
+        return view('produit', compact('produit','categ'));
     }
 
     /**

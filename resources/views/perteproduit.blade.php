@@ -161,7 +161,9 @@
 														<label for="produit">Produits</label>
 														<select  class="form-control" name="produit_id" id="produit_id">
 															<optgroup >																								
-																<option value=""></option>														
+															@foreach ($produit as $item)																				
+																<option value="{{$item->id}}">{{$item->designation}}</option>
+															@endforeach															
 															</optgroup>
 														</select>
 													</div>                                               

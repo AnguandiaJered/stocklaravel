@@ -15,7 +15,9 @@ class ApprovisionController extends Controller
     public function index()
     {
         $approvision = \DB::select("SELECT * FROM approvision order by id DESC");
-        return view('approvision', compact('approvision'));
+        $produit = \DB::select("SELECT * FROM produit order by id DESC");
+        $fournisseur = \DB::select("SELECT * FROM fournisseur order by id DESC");
+        return view('approvision', compact('approvision','produit','fournisseur'));
     }
 
     /**

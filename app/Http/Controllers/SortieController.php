@@ -15,7 +15,9 @@ class SortieController extends Controller
     public function index()
     {
         $sortie = \DB::select("SELECT * FROM sortie order by id DESC");
-        return view('sortie', compact('sortie'));
+        $produit = \DB::select("SELECT * FROM produit order by id DESC");
+        $client = \DB::select("SELECT * FROM client order by id DESC");
+        return view('sortie', compact('sortie','client','produit'));
     }
 
     /**
@@ -40,7 +42,7 @@ class SortieController extends Controller
             'client_id'=>'required',
             'produit_id'=>'required',
             'quantite'=>'required',       
-            'prix	'=>'required',       
+            'prix'=>'required',       
             'devise'=>'required',       
             'dateprovision'=>'required',              
         ]);

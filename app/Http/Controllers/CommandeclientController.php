@@ -15,7 +15,9 @@ class CommandeclientController extends Controller
     public function index()
     {
         $commandeclient = \DB::select("SELECT * FROM commandeclient order by id DESC");
-        return view('commandeclient', compact('commandeclient'));
+        $produit = \DB::select("SELECT * FROM produit order by id DESC");
+        $client = \DB::select("SELECT * FROM client order by id DESC");
+        return view('commandeclient', compact('commandeclient','produit','client'));
     }
 
     /**

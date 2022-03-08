@@ -308,7 +308,7 @@
                 headers:{'X-CSRF-Token':$('meta[name="csrf-token"]').attr('content')},
                 
                 success: function(data){
-                    alert('Update successfully');
+                    alert('Insert successfully');
                     $('#formeuser')[0].reset();
                 }
             });
