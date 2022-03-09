@@ -55,6 +55,14 @@ class ApprovisionController extends Controller
             'devise'=>$request->devise,
             'dateprovision'=>$request->dateprovision,
         ]);
+        // \DB::statement("CALL Saveprovision('?,?,?,?,?,?')",[
+        //     'produit_id'=>$request->produit_id,
+        //     'fournisseur_id'=>$request->fournisseur_id,
+        //     'quantite'=>$request->quantite,
+        //     'prix'=>$request->prix,
+        //     'devise'=>$request->devise,
+        //     'dateprovision'=>$request->dateprovision,
+        // ]);
 
         return \redirect()->route('approvision.index')->with('message','Inserer avec success');
     }

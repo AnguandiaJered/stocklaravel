@@ -249,11 +249,13 @@
 								<th>Quantité</th>
 								<th>Categorie</th>
 							</thead>
-							<tbody>												
-								<td></td>
-								<td></td>
-								<td></td>
-								<td></td>							
+							<tbody>	
+                            <!-- @foreach ($valerte as $item)												
+								<td>{{$item->Id}}</td>
+								<td>{{$item->Produit}}</td>
+								<td>{{$item->Quantite}}</td>
+								<td>{{$item->Categorie}}</td>
+                            @endforeach								 -->
 							</tbody>
 						</table>
 					</div>

@@ -15,7 +15,8 @@ class AlerteController extends Controller
     public function index()
     {
         $alerte = \DB::select("SELECT * FROM alerte order by id DESC");
-        return view('alerte', compact('alerte'));
+        $valerte = \DB::select("SELECT * FROM viewAlerte  order by id DESC");
+        return view('alerte', compact('alerte','valerte'));
     }
 
     /**
