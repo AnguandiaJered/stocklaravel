@@ -44,7 +44,14 @@ class PerteproduitController extends Controller
             'typegaspillage'=>'required',        
         ]);
 
-        \DB::table('perteproduit')->insert([
+        // \DB::table('perteproduit')->insert([
+        //     'produit_id'=>$request->produit_id,
+        //     'quantite'=>$request->quantite,
+        //     'dateperte'=>$request->dateperte,
+        //     'typegaspillage'=>$request->typegaspillage,
+        // ]);
+        
+        \DB::statement("CALL Saveperte(?,?,?,?)",[
             'produit_id'=>$request->produit_id,
             'quantite'=>$request->quantite,
             'dateperte'=>$request->dateperte,

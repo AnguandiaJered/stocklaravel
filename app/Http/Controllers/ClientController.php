@@ -44,7 +44,15 @@ class ClientController extends Controller
             'mail'=>'required'         
         ]);
 
-        \DB::table('client')->insert([
+        // \DB::table('client')->insert([
+        //     'noms'=>$request->noms,
+        //     'sexe'=>$request->sexe,
+        //     'adresse'=>$request->adresse,
+        //     'telephone'=>$request->telephone,
+        //     'mail'=>$request->mail
+        // ]);
+
+        Client::create([
             'noms'=>$request->noms,
             'sexe'=>$request->sexe,
             'adresse'=>$request->adresse,

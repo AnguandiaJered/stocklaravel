@@ -152,7 +152,7 @@
                                             <button type="button" data-dismiss="modal" aria-label="Close" class="close"><span aria-hidden="true">×</span></button>
                                         </div>
                                         <div class="modal-body col-md-12">						
-                                            <form id="formapprovision" class="form-horizontal col-md-12" autocomplete="off">
+                                            <form  method="POST" action="{{ route('approvision.store')}}" class="form-horizontal col-md-12" autocomplete="off">
                                             @csrf     
 												<div class="row">
                                                     <div class="col-md-6  mt-3 text-left">                           

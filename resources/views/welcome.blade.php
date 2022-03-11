@@ -169,11 +169,13 @@
                             <div class="d-flex justify-content-between align-items-baseline">
                             <h6 class="card-title mb-0">Total Utilisateurs</h6>              
                             </div>
-                            <div class="row">                                		
+                            <div class="row">  
+                            @foreach ($totaluser  as $item)                               		
                                 <div class="col-8 col-md-12 col-xl-8">
-                                    <h5 class="text-center"></h5>
+                                    <h5 class="text-center">{{$item->Totaluser }}</h5>
                                     <h3 class="mb-2"> Users</h3>                
-                                </div>                              
+                                </div>   
+                            @endforeach	                            
                             <div class="col-6 col-md-12 col-xl-7">
                                 <div id="apexChart1" class="mt-md-3 mt-xl-0"></div>
                             </div>
@@ -187,11 +189,13 @@
                             <div class="d-flex justify-content-between align-items-baseline">
                             <h6 class="card-title mb-0">Total Stocks</h6>             
                             </div>
-                            <div class="row">                            		
+                            <div class="row">  
+                            @foreach ($totalstock as $item)                          		
                                 <div class="col-10 col-md-12 col-xl-10">
-                                <h5 class="text-center"></h5>
+                                    <h5 class="text-center">{{$item->TotalStock}}</h5>
                                     <h3 class="mb-2">Stocks</h3>                
-                                </div>                                		  
+                                </div> 
+                            @endforeach	                               		  
                             <div class="col-6 col-md-12 col-xl-7">
                                 <div id="apexChart2" class="mt-md-3 mt-xl-0"></div>
                             </div>
@@ -203,13 +207,15 @@
                         <div class="card">
                         <div class="card-body">		 
                             <div class="d-flex justify-content-between align-items-baseline">
-                            <h6 class="card-title mb-0">Total Approvisionnement</h6>             
+                            <h6 class="card-title mb-0">Approvisionnement</h6>             
                             </div>
-                            <div class="row">                            
+                            <div class="row"> 
+                            @foreach ($totalentree as $item)                            
                                 <div class="col-11 col-md-12 col-xl-11">
-                                    <h5 class="text-center"></h5>
+                                    <h5 class="text-center">{{$item->TotalEntree}}</h5>
                                     <h3 class="mb-2">Entrées</h3>                
-                                </div>                               	
+                                </div>
+                            @endforeach	                               	
                             <div class="col-6 col-md-12 col-xl-7">
                                 <div id="apexChart2" class="mt-md-3 mt-xl-0"></div>
                             </div>
@@ -223,11 +229,13 @@
                             <div class="d-flex justify-content-between align-items-baseline">
                             <h6 class="card-title mb-0">Total Sotie Stock</h6>              
                             </div>
-                            <div class="row">                           
+                            <div class="row"> 
+                            @foreach ($totalsortie as $item)                           
                                 <div class="col-10 col-md-12 col-xl-10">
-                                    <h5 class="text-center"></h5>
+                                    <h5 class="text-center">{{$item->totalsortie}}</h5>
                                     <h3 class="mb-2"> Sorties</h3>                
-                                </div>                               
+                                </div>
+                            @endforeach	                               
                             <div class="col-6 col-md-12 col-xl-7">
                                 <div id="apexChart3" class="mt-md-3 mt-xl-0"></div>
                             </div>
@@ -249,13 +257,15 @@
 								<th>Quantité</th>
 								<th>Categorie</th>
 							</thead>
-							<tbody>	
-                            <!-- @foreach ($valerte as $item)												
+							<tbody class="bg-danger">	
+                            @foreach ($valerte as $item)
+                            <tr>												
 								<td>{{$item->Id}}</td>
 								<td>{{$item->Produit}}</td>
 								<td>{{$item->Quantite}}</td>
 								<td>{{$item->Categorie}}</td>
-                            @endforeach								 -->
+                            </tr>
+                            @endforeach								
 							</tbody>
 						</table>
 					</div>

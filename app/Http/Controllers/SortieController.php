@@ -47,7 +47,15 @@ class SortieController extends Controller
             'dateprovision'=>'required',              
         ]);
 
-        \DB::table('sortie')->insert([
+        // \DB::table('sortie')->insert([
+        //     'client_id'=>$request->client_id,
+        //     'produit_id'=>$request->produit_id,
+        //     'quantite'=>$request->quantite,
+        //     'prix'=>$request->prix,
+        //     'devise'=>$request->devise,
+        //     'dateprovision'=>$request->dateprovision,
+        // ]);
+        \DB::statement("CALL SaveSortie(?,?,?,?,?,?)",[
             'client_id'=>$request->client_id,
             'produit_id'=>$request->produit_id,
             'quantite'=>$request->quantite,

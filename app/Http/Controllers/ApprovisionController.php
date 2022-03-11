@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Approvision;
+use Auth;
 
 class ApprovisionController extends Controller
 {
@@ -47,15 +48,7 @@ class ApprovisionController extends Controller
             'dateprovision'=>'required',         
         ]);
 
-        \DB::table('approvision')->insert([
-            'produit_id'=>$request->produit_id,
-            'fournisseur_id'=>$request->fournisseur_id,
-            'quantite'=>$request->quantite,
-            'prix'=>$request->prix,
-            'devise'=>$request->devise,
-            'dateprovision'=>$request->dateprovision,
-        ]);
-        // \DB::statement("CALL Saveprovision('?,?,?,?,?,?')",[
+        // \DB::table('approvision')->insert([
         //     'produit_id'=>$request->produit_id,
         //     'fournisseur_id'=>$request->fournisseur_id,
         //     'quantite'=>$request->quantite,
@@ -63,6 +56,14 @@ class ApprovisionController extends Controller
         //     'devise'=>$request->devise,
         //     'dateprovision'=>$request->dateprovision,
         // ]);
+        \DB::statement("CALL Saveprovision(?,?,?,?,?,?)",[
+            'produit_id'=>$request->produit_id,
+            'fournisseur_id'=>$request->fournisseur_id,
+            'quantite'=>$request->quantite,
+            'prix'=>$request->prix,
+            'devise'=>$request->devise,
+            'dateprovision'=>$request->dateprovision,
+        ]);
 
         return \redirect()->route('approvision.index')->with('message','Inserer avec success');
     }
@@ -100,6 +101,7 @@ class ApprovisionController extends Controller
      */
     public function update(Request $request)
     {
+        $user_id=Auth::user()->name;
         \DB::update("UPDATE approvision set produit_id = ?, fournisseur_id = ?, quantite = ?, prix = ?, devise = ?, dateprovision = ? WHERE id= ? ", [$request->produit_id,$request->fournisseur_id,$request->quantite,$request->prix,$request->devise,$request->dateprovision,$request->id]);
         return \redirect()->route('approvision.index')->with('message','modification reussi avec succes');
     }
