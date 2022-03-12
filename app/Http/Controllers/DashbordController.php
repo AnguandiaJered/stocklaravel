@@ -12,7 +12,7 @@ class DashbordController extends Controller
         $totalstock = \DB::select("SELECT * FROM totalproduit");
         $totalsortie = \DB::select("SELECT * FROM totalsortie");
         $totalentree = \DB::select("SELECT * FROM totalprovision");
-        $totaluser = \DB::select("SELECT * FROM totaluser");
-        return view('welcome',compact('valerte','totalstock','totalsortie','totalentree','totaluser'));
+        $usertotal = \DB::select("SELECT * FROM totaluser");
+        return view('welcome',compact('valerte','totalstock','totalsortie','totalentree','usertotal'));
     }
 }

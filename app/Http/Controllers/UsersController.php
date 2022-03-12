@@ -44,7 +44,7 @@ class UsersController extends Controller
         \DB::table('users')->insert([
             'name'=>$request->name,
             'email'=>$request->email,
-            'password'=>$request->password,
+            'password'=>\bcrypt($request->password),
         ]);
 
         return \redirect()->route('users.index')->with('message','Inserer avec success');
@@ -83,7 +83,7 @@ class UsersController extends Controller
      */
     public function update(Request $request)
     {       
-       $data = \DB::update("UPDATE users set name = ?, email = ?, password = ? WHERE id= ? ", [$request->name,$request->email,$request->password,$request->id]);
+       $data = \DB::update("UPDATE users set name = ?, email = ?, password = ? WHERE id= ? ", [$request->name,$request->email,\bcrypt($request->password),$request->id]);
         return \redirect()->route('users.index')->with('message','modification reussi avec succes');
     }
 

@@ -26,7 +26,8 @@
 					<a class="dropdown-toggle" href="#" role="button" data-toggle="dropdown">
 						<span class="user-icon">
 							<img src="{{url('assets\vendors\images\customer.png')}}" alt="">
-						</span>						
+						</span>	
+					
 					</a>
 					<div class="dropdown-menu dropdown-menu-right dropdown-menu-icon-list">
 						<a class="dropdown-item" href="profile.php"><i class="dw dw-user1"></i> Profile</a>						

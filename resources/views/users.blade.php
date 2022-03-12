@@ -7,9 +7,9 @@
 	<title>Utilisateurs</title>
 
 	  <!-- Site favicon -->
-       <link rel="apple-touch-icon" sizes="180x180" href="{{url('assets\vendors\images\Logo.jpg')}}">
-        <link rel="icon" type="image/png" sizes="32x32" href="{{url('assets\vendors\images\Logo.jpg')}}">
-        <link rel="icon" type="image/png" sizes="16x16" href="{{url('assets\vendors\images\Logo.jpg')}}">
+       <link rel="apple-touch-icon" sizes="180x180" href="{{url('assets\vendors\images\graphic.PNG')}}">
+        <link rel="icon" type="image/png" sizes="32x32" href="{{url('assets\vendors\images\graphic.PNG')}}">
+        <link rel="icon" type="image/png" sizes="16x16" href="{{url('assets\vendors\images\graphic.PNG')}}">
 
         <!-- Mobile Specific Metas -->
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
@@ -213,7 +213,8 @@
 								</div>
 								<div class="modal-body col-md-12">			
 																		
-                                    <form method="POST" action="{{ route('users.update')}}" class="form-horizontal col-md-12" autocomplete="off">										
+                                    <form method="POST" action="{{ route('users.update')}}" class="form-horizontal col-md-12" autocomplete="off">
+									@csrf 										
                                         <input type="hidden" name="id" id="id" value="{{$item->id}}" class="form-control" required/>										    
                                         <div class="form-group">
                                             <label for="name">Username</label>

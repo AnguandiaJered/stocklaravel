@@ -28,7 +28,6 @@ use App\Http\Controllers\DashbordController;
 |
 */
 
-// Route::get('/', function () { return view('welcome');});
 Route::get('/', [DashbordController::class,'index'])->name('welcome');
 
 Route::post('/category/store', [CategorieController::class,'store'])->name('category.store');
@@ -39,11 +38,11 @@ Route::get('/alerte/edit/{id}', [AlerteController::class,'edit'])->middleware(['
 Route::post('/alerte/update', [AlerteController::class,'update'])->middleware(['auth'])->name('alerte.update');
 Route::get('/alerte',[AlerteController::class,'index'])->middleware(['auth'])->name('alerte.index');
 
-Route::post('/approvision/store', [ApprovisionController::class,'store'])->name('approvision.store');
-Route::get('/approvision/edit/{id}', [ApprovisionController::class,'edit'])->name('approvision.edit');
-Route::post('/approvision/update', [ApprovisionController::class,'update'])->name('approvision.update');
-Route::get('/approvision/delete/{id}', [ApprovisionController::class,'destroy'])->name('approvision.delete');
-Route::get('/approvision', [ApprovisionController::class,'index'])->name('approvision.index');
+Route::post('/approvision/store', [ApprovisionController::class,'store'])->middleware(['auth'])->name('approvision.store');
+Route::get('/approvision/edit/{id}', [ApprovisionController::class,'edit'])->middleware(['auth'])->name('approvision.edit');
+Route::post('/approvision/update', [ApprovisionController::class,'update'])->middleware(['auth'])->name('approvision.update');
+Route::get('/approvision/delete/{id}', [ApprovisionController::class,'destroy'])->middleware(['auth'])->name('approvision.delete');
+Route::get('/approvision', [ApprovisionController::class,'index'])->middleware(['auth'])->name('approvision.index');
 
 
 Route::get('/client/edit/{id}', [ClientController::class,'edit'])->middleware(['auth'])->name('client.edit');
