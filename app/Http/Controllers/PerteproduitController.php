@@ -43,19 +43,12 @@ class PerteproduitController extends Controller
             'dateperte'=>'required',
             'typegaspillage'=>'required',        
         ]);
-
-        // \DB::table('perteproduit')->insert([
-        //     'produit_id'=>$request->produit_id,
-        //     'quantite'=>$request->quantite,
-        //     'dateperte'=>$request->dateperte,
-        //     'typegaspillage'=>$request->typegaspillage,
-        // ]);
         
         \DB::statement("CALL Saveperte(?,?,?,?)",[
-            'produit_id'=>$request->produit_id,
-            'quantite'=>$request->quantite,
-            'dateperte'=>$request->dateperte,
-            'typegaspillage'=>$request->typegaspillage,
+            $request->produit_id,
+            $request->quantite,
+            $request->dateperte,
+            $request->typegaspillage,
         ]);
 
         return \redirect()->route('perteproduit.index')->with('message','Inserer avec success');

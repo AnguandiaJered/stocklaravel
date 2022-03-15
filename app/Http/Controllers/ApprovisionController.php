@@ -47,22 +47,14 @@ class ApprovisionController extends Controller
             'devise'=>'required',         
             'dateprovision'=>'required',         
         ]);
-
-        // \DB::table('approvision')->insert([
-        //     'produit_id'=>$request->produit_id,
-        //     'fournisseur_id'=>$request->fournisseur_id,
-        //     'quantite'=>$request->quantite,
-        //     'prix'=>$request->prix,
-        //     'devise'=>$request->devise,
-        //     'dateprovision'=>$request->dateprovision,
-        // ]);
+        
         \DB::statement("CALL Saveprovision(?,?,?,?,?,?)",[
-            'produit_id'=>$request->produit_id,
-            'fournisseur_id'=>$request->fournisseur_id,
-            'quantite'=>$request->quantite,
-            'prix'=>$request->prix,
-            'devise'=>$request->devise,
-            'dateprovision'=>$request->dateprovision,
+            $request->produit_id,
+            $request->fournisseur_id,
+            $request->quantite,
+            $request->prix,
+            $request->devise,
+            $request->dateprovision
         ]);
 
         return \redirect()->route('approvision.index')->with('message','Inserer avec success');
