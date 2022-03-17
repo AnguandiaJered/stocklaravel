@@ -210,7 +210,7 @@
 				</div>
           				
                 <div class="card-box mb-50 container"><br>               
-				<!-- <a class="btn btn-primary offset-10" href="fpdf/tutorial/produit.php">Imprimer</a>    	 -->
+				<a class="btn btn-primary offset-10" href="{{ route('listeapprovision') }}">Imprimer</a>    	
 					<div class="pd-20">
 						<h4 class="text-blue h4">Liste des approvisionnement</h4>                  						
 					</div>

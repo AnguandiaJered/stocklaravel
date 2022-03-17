@@ -15,6 +15,7 @@ use App\Http\Controllers\SortieController;
 use App\Http\Controllers\UsersController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\DashbordController;
+use Codedge\Fpdf\Fpdf\Fpdf;
 
 
 /*
@@ -98,3 +99,96 @@ Route::get('/users',[UsersController::class,'index'])->middleware(['auth'])->nam
 
 Route::get('/login', [ LoginController::class,'index'])->name('login');
 Route::post('/authenticate', [ LoginController::class,'authenticate'])->name('authenticate');
+
+Route::get('/listeapprovision', function () {
+    $fpdf = new Fpdf;
+    $fpdf->AddPage();    
+
+    $listeApprovision = \DB::select("SELECT * FROM approvision"); 
+    $fpdf->SetFont('Courier', 'B', 18);
+    $fpdf->Cell(195,12,'LISTE DES APPROVISIONNEMENTS',1,0,'C');
+    $fpdf->Ln();
+    $fpdf->Cell(10,6,'ID',1,0,'C');
+    $fpdf->Cell(30,6,'Produit',1,0,'C');
+    $fpdf->Cell(30,6,'Fsseur',1,0,'C');
+    
+    $fpdf->Cell(30,6,'QTE',1,0,'C');
+    $fpdf->Cell(30,6,'Prix',1,0,'C');
+    $fpdf->Cell(25,6,'Devise',1,0,'C');
+    $fpdf->Cell(40,6,'Date',1,0,'C');
+    $fpdf->Ln();
+    foreach($listeApprovision as $list){
+        $fpdf->SetFont('Courier', 'B', 18);
+
+        $fpdf->Cell(10,8,$list->id,1,0,'C');
+		$fpdf->Cell(30,8,$list->produit_id,1,0,'C');
+		$fpdf->Cell(30,8,$list->fournisseur_id,1,0,'C');
+		
+		$fpdf->Cell(30,8,$list->quantite,1,0,'C');
+		$fpdf->Cell(30,8,$list->prix,1,0,'C');
+		$fpdf->Cell(25,8,$list->devise,1,0,'C');
+		$fpdf->Cell(40,8,$list->dateprovision,1,0,'C');
+        $fpdf->Ln();       
+    }
+    $fpdf->Output();      
+    exit;  
+
+})->name('listeapprovision');
+
+Route::get('/listeproduit', function () {
+    $fpdf = new Fpdf;
+    $fpdf->AddPage();    
+
+    $listeproduit = \DB::select("SELECT * FROM produit"); 
+    $fpdf->SetFont('Courier', 'B', 18);
+    $fpdf->Cell(190,12,'LISTE DES PRODUITS EN STOCK',1,0,'C');
+    $fpdf->Ln();
+    $fpdf->Cell(10,6,'ID',1,0,'C');
+    $fpdf->Cell(60,6,'Designation',1,0,'C');
+    $fpdf->Cell(60,6,'Quantite',1,0,'C');
+    $fpdf->Cell(60,6,'Category',1,0,'C');
+    $fpdf->Ln();
+    foreach($listeproduit as $row){
+        $fpdf->SetFont('Courier', 'B', 18);
+        $fpdf->Cell(10,8,$row->id,1,0,'C');
+		$fpdf->Cell(60,8,$row->designation,1,0,'C');
+		$fpdf->Cell(60,8,$row->quantite,1,0,'C');
+		$fpdf->Cell(60,8,$row->category_id,1,0,'C');
+        $fpdf->Ln();       
+    }
+    $fpdf->Output();      
+    exit;  
+
+})->name('listeproduit');
+
+Route::get('/listesortie', function () {
+    $fpdf = new Fpdf;
+    $fpdf->AddPage();    
+
+    $listesortie = \DB::select("SELECT * FROM sortie"); 
+    $fpdf->SetFont('Courier', 'B', 18);
+    $fpdf->Cell(195,12,'LISTE DES PRODUITS VENDUS',1,0,'C');
+    $fpdf->Ln();
+    $fpdf->Cell(10,6,'ID',1,0,'C');
+    $fpdf->Cell(30,6,'Client',1,0,'C');
+    $fpdf->Cell(30,6,'Produit',1,0,'C');
+    $fpdf->Cell(30,6,'QTE',1,0,'C');
+    $fpdf->Cell(30,6,'Prix',1,0,'C');
+    $fpdf->Cell(25,6,'Devise',1,0,'C');
+    $fpdf->Cell(40,6,'Date',1,0,'C');
+    $fpdf->Ln();
+    foreach($listesortie as $row){
+        $fpdf->SetFont('Courier', 'B', 18);
+        $fpdf->Cell(10,8,$row->id,1,0,'C');
+		$fpdf->Cell(30,8,$row->client_id,1,0,'C');
+		$fpdf->Cell(30,8,$row->produit_id,1,0,'C');
+		$fpdf->Cell(30,8,$row->quantite,1,0,'C');
+		$fpdf->Cell(30,8,$row->prix,1,0,'C');
+		$fpdf->Cell(25,8,$row->devise,1,0,'C');
+		$fpdf->Cell(40,8,$row->dateprovision,1,0,'C');
+        $fpdf->Ln();       
+    }
+    $fpdf->Output();      
+    exit;  
+
+})->name('listesortie');
