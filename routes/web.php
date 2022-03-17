@@ -28,7 +28,7 @@ use App\Http\Controllers\DashbordController;
 |
 */
 
-Route::get('/', [DashbordController::class,'index'])->name('welcome');
+Route::get('/', [DashbordController::class,'index'])->middleware(['auth'])->name('welcome');
 
 Route::post('/category/store', [CategorieController::class,'store'])->name('category.store');
 Route::get('/category/index', [CategorieController::class,'index'])->name('category.index');

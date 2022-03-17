@@ -210,7 +210,7 @@
 						</div>				
                 <div class="card-box mb-50 container"><br>
                 <button data-toggle="modal" data-target="#myModalcate" class="btn btn-primary">Add categorie</button>
-				<a class="btn btn-primary offset-8" href="fpdf/tutorial/produit.php">Imprimer</a>    	
+				<!-- <a class="btn btn-primary offset-8" href="fpdf/tutorial/produit.php">Imprimer</a>    	 -->
 					<div class="pd-20">
 						<h4 class="text-blue h4">Liste des Produits</h4>                  						
 					</div>
