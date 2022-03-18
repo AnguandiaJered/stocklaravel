@@ -71,7 +71,6 @@ Route::get('/fournisseur/delete/{id}', [FournisseurController::class,'destroy'])
 Route::get('/fournisseur', [FournisseurController::class,'index'])->middleware(['auth'])->name('fournisseur.index');
 
 
-
 Route::post('/perteproduit/store', [PerteproduitController::class,'store'])->middleware(['auth'])->name('perteproduit.store');
 Route::get('/perteproduit/edit/{id}', [PerteproduitController::class,'edit'])->middleware(['auth'])->name('perteproduit.edit');
 Route::post('/perteproduit/update', [PerteproduitController::class,'update'])->middleware(['auth'])->name('perteproduit.update');
